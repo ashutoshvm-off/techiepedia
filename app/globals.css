@@ -3,6 +3,7 @@
 
 body {
   background: var(--wope-com-black-russian, #0A0118);
+  overflow-x: hidden;
 }
 
 @layer base {
