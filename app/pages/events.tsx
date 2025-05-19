@@ -1,3 +1,4 @@
+'use client';
 export function Events() {
   return (
     <div>
@@ -113,153 +114,146 @@ export function Events() {
             {/* Event List */}
             <div
               style={{
-                flex: "2 1 500px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "2rem",
-                minWidth: "320px",
-                maxWidth: "600px",
-                position: "relative",
+              flex: "2 1 500px",
+              display: "flex",
+              flexDirection: "column",
+              minWidth: "320px",
+              maxWidth: "600px",
+              position: "relative",
+              maxHeight: "500px", // Added max height
+              overflowY: "auto", // Added scroll
+              paddingRight: "24px", // Added padding for scrollbar
               }}
             >
-              {[1, 2, 3].map((_, idx) => (
+              {/* Custom Scrollbar Styles */}
+              <style jsx>{`
+              div::-webkit-scrollbar {
+                width: 8px;
+              }
+              div::-webkit-scrollbar-track {
+                background: transparent;
+              }
+              div::-webkit-scrollbar-thumb {
+                background: linear-gradient(180deg, #7e5cff 0%, #7ee6ff 100%);
+                border-radius: 6px;
+              }
+              `}</style>
+
+              {[1, 2, 3, 4, 5, 6].map((_, idx) => ( // Added more items to show scroll
+              <div
+                key={idx}
+                style={{
+                display: "flex",
+                alignItems: "center",
+                background: "rgba(255,255,255,0.02)",
+                borderRadius: "14px",
+                padding: "1.2rem 1.5rem",
+                boxShadow: "0 2px 16px 0 #7e5cff22",
+                position: "relative",
+                marginBottom: "2rem", // Changed gap to margin for scroll
+                }}
+              >
+                {/* Rest of the event card code remains the same */}
+                {/* Date */}
                 <div
-                  key={idx}
+                style={{
+                  width: "103.305px",
+                  height: "104.187px",
+                  flexShrink: 0,
+                  borderRadius: "14.88px",
+                  background: "linear-gradient(136deg, #3C5FC6 17%, #FBF3FF 54.24%, #150A54 79.77%)",
+                  color: "#000",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center", 
+                  justifyContent: "center",
+                  textAlign: "center",
+                  fontFamily: "Urbanist",
+                  fontSize: "51.44px",
+                  fontWeight: 700,
+                  lineHeight: "42.515px",
+                  letterSpacing: "-0.765px",
+                  marginRight: "1.5rem",
+                }}
+                >
+                <div style={{ fontSize: "1.1rem", fontWeight: 600 }}>
+                  FRI
+                </div>
+                <div style={{ fontSize: "2rem", fontWeight: 700 }}>09</div>
+                <div style={{ fontSize: "0.85rem", fontWeight: 400 }}>
+                  JANUARY 2024
+                </div>
+                </div>
+                {/* Event Info */}
+                <div style={{ flex: 1, textAlign: "left" }}>
+                <div
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    background: "rgba(255,255,255,0.02)",
-                    borderRadius: "14px",
-                    padding: "1.2rem 1.5rem",
-                    boxShadow: "0 2px 16px 0 #7e5cff22",
-                    position: "relative",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: "1.15rem",
+                  marginBottom: "0.2rem",
                   }}
                 >
-                  {/* Date */}
-                  <div
-                    style={{
-                      width: "103.305px",
-                      height: "104.187px",
-                      flexShrink: 0,
-                      borderRadius: "14.88px",
-                      background: "linear-gradient(136deg, #3C5FC6 17%, #FBF3FF 54.24%, #150A54 79.77%)",
-                      color: "#000",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center", 
-                      justifyContent: "center",
-                      textAlign: "center",
-                      fontFamily: "Urbanist",
-                      fontSize: "51.44px",
-                      fontWeight: 700,
-                      lineHeight: "42.515px",
-                      letterSpacing: "-0.765px",
-                      marginRight: "1.5rem",
-                    }}
-                  >
-                    <div style={{ fontSize: "1.1rem", fontWeight: 600 }}>
-                      FRI
-                    </div>
-                    <div style={{ fontSize: "2rem", fontWeight: 700 }}>09</div>
-                    <div style={{ fontSize: "0.85rem", fontWeight: 400 }}>
-                      JANUARY 2024
-                    </div>
-                  </div>
-                  {/* Event Info */}
-                  <div style={{ flex: 1, textAlign: "left" }}>
-                    <div
-                      style={{
-                        color: "#fff",
-                        fontWeight: 700,
-                        fontSize: "1.15rem",
-                        marginBottom: "0.2rem",
-                      }}
-                    >
-                      EVENT NAME
-                    </div>
-                    <div
-                      style={{
-                        color: "#7ee6ff",
-                        fontWeight: 500,
-                        fontSize: "0.95rem",
-                        marginBottom: "0.2rem",
-                      }}
-                    >
-                      VENUE
-                    </div>
-                    <div
-                      style={{
-                        color: "#fff",
-                        fontWeight: 400,
-                        fontSize: "0.95rem",
-                        opacity: 0.8,
-                        marginBottom: "0.2rem",
-                      }}
-                    >
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit.
-                      Consectetur adipiscing
-                    </div>
-                  </div>
-                  {/* Register Button */}
-                  <button
-                    style={{
-                      marginLeft: "1.5rem",
-                      padding: "0.5rem 1.4rem",
-                      fontSize: "1rem",
-                      fontWeight: 500,
-                      borderRadius: "2rem",
-                      border: "1.5px solid #a084e8",
-                      background: "rgba(30,0,60,0.3)",
-                      color: "#fff",
-                      cursor: "pointer",
-                      boxShadow: "0 2px 12px rgba(64,0,153,0.10)",
-                      transition: "background 0.2s",
-                      position: "relative",
-                    }}
-                  >
-                    Register
-                    <span
-                      style={{
-                        position: "absolute",
-                        right: "-18px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        color: "#fff",
-                        fontSize: "1.2rem",
-                        filter: "drop-shadow(0 0 6px #7ee6ff)",
-                        pointerEvents: "none",
-                      }}
-                    >
-                      ✦
-                    </span>
-                  </button>
+                  EVENT NAME
                 </div>
+                <div
+                  style={{
+                  color: "#7ee6ff",
+                  fontWeight: 500,
+                  fontSize: "0.95rem",
+                  marginBottom: "0.2rem",
+                  }}
+                >
+                  VENUE
+                </div>
+                <div
+                  style={{
+                  color: "#fff",
+                  fontWeight: 400,
+                  fontSize: "0.95rem",
+                  opacity: 0.8,
+                  marginBottom: "0.2rem",
+                  }}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit.
+                  Consectetur adipiscing
+                </div>
+                </div>
+                {/* Register Button */}
+                <button
+                style={{
+                  marginLeft: "1.5rem",
+                  padding: "0.5rem 1.4rem",
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  borderRadius: "2rem",
+                  border: "1.5px solid #a084e8",
+                  background: "rgba(30,0,60,0.3)",
+                  color: "#fff",
+                  cursor: "pointer",
+                  boxShadow: "0 2px 12px rgba(64,0,153,0.10)",
+                  transition: "background 0.2s",
+                  position: "relative",
+                }}
+                >
+                Register
+                <span
+                  style={{
+                  position: "absolute",
+                  right: "-18px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  color: "#fff",
+                  fontSize: "1.2rem",
+                  filter: "drop-shadow(0 0 6px #7ee6ff)",
+                  pointerEvents: "none",
+                  }}
+                >
+                  ✦
+                </span>
+                </button>
+              </div>
               ))}
-              <div
-                style={{
-                  position: "absolute",
-                  right: "-18px",
-                  top: "0",
-                  height: "100%",
-                  width: "8px",
-                  borderRadius: "6px",
-                  background:
-                    "linear-gradient(180deg, #7e5cff 0%, #7ee6ff 100%)",
-                  opacity: 0.7,
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  right: "-18px",
-                  top: "10%",
-                  height: "30%",
-                  width: "8px",
-                  borderRadius: "6px",
-                  background: "#fff",
-                  opacity: 0.5,
-                }}
-              />
             </div>
           </div>
           {/* Bottom Glow */}
