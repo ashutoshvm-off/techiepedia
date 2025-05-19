@@ -9,9 +9,11 @@ import Footer from "./footer";
 
 export default function Page() {
   return (
-    <main className="bg-black text-white font-sans">
+    <main className="bg-black text-white font-sans" style={{ paddingTop: "80px" }}>
         <Navbar />
-      <Hero />
+      <div style={{ marginTop: "2rem" }}>
+        <Hero />
+      </div>
       <About />
       <Events />
       <Blog />

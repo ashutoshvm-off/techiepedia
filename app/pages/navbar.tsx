@@ -1,73 +1,114 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
 export function Navbar() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <nav
             style={{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "1.5rem 3rem 1.5rem 2rem",
+                padding: isMobile ? "1rem" : "1.5rem 3rem 1.5rem 2rem",
                 background: "transparent",
                 color: "#fff",
-                position: "relative",
-            zIndex: 10,
-            borderBottom: "1px solid rgba(255,255,255,0.08)",
-        }}
-
-    >
-        <div
-            style={{ fontWeight: "bold", fontSize: "1.5rem", letterSpacing: "-1px" }}
-        >
-            techiepedia
-        </div>
-        <ul
-            style={{
-                display: "flex",
-                listStyle: "none",
-                gap: "2.5rem",
-                margin: 0,
-                padding: 0,
-                fontWeight: 500,
-                fontSize: "1.1rem",
+                position: "fixed",
+                width: "100%",
+                top: 0,
+                zIndex: 1000,
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
             }}
         >
-            <li>
-                <a
-                    href="/"
+            <div style={{ fontWeight: "bold", fontSize: "1.5rem", letterSpacing: "-1px" }}>
+                techiepedia
+            </div>
+            
+            {isMobile && (
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
                     style={{
-                        color: "#F9F8FC",
-                        fontFamily: "Poppins",
-                        fontSize: "18px",
-                        fontWeight: 600,
-                        lineHeight: "24px",
-                        letterSpacing: "-0.14px",
-                        textDecoration: "none",
-                        background: "rgba(255,255,255,0.04)",
+                        background: 'transparent',
+                        border: 'none',
+                        color: '#fff',
+                        fontSize: '1.8rem',
+                        cursor: 'pointer',
+                        zIndex: 1001,
+                        padding: '0.5rem',
                     }}
                 >
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="#about" style={{ color: "#F9F8FC", textDecoration: "none" }}>
-                    About Us
-                </a>
-            </li>
-            <li>
-                <a href="#blog" style={{ color: "#F9F8FC", textDecoration: "none" }}>
-                    Blog
-                </a>
-            </li>
-            <li>
-                <a href="#events" style={{ color: "#F9F8FC", textDecoration: "none" }}>
-                    Events
-                </a>
-            </li>
-            <li>
-                <a href="#contact" style={{ color: "#F9F8FC", textDecoration: "none" }}>
-                    Contact Us
-                </a>
-            </li>
-        </ul>
-    </nav>
-);
+                    {isOpen ? '×' : '☰'}
+                </button>
+            )}
+
+            <ul
+                style={{
+                    display: isMobile ? (isOpen ? "flex" : "none") : "flex",
+                    flexDirection: isMobile ? "column" : "row",
+                    position: isMobile ? "absolute" : "relative",
+                    top: isMobile ? "100%" : "auto",
+                    left: isMobile ? "0" : "auto",
+                    width: isMobile ? "100%" : "auto",
+                    background: isMobile ? "#0A0118" : "transparent",
+                    listStyle: "none",
+                    gap: isMobile ? "1rem" : "2.5rem",
+                    margin: 0,
+                    padding: isMobile ? "1rem" : 0,
+                    fontWeight: 500,
+                    fontSize: "1.1rem",
+                    boxShadow: isMobile ? "0 4px 6px rgba(0,0,0,0.1)" : "none",
+                    transition: "all 0.3s ease",
+                }}
+            >
+                <li>
+                    <a
+                        href="/"
+                        style={{
+                            color: "#F9F8FC",
+                            fontFamily: "Poppins",
+                            fontSize: "18px",
+                            fontWeight: 600,
+                            lineHeight: "24px",
+                            letterSpacing: "-0.14px",
+                            textDecoration: "none",
+                            background: "rgba(255,255,255,0.04)",
+                        }}
+                    >
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="#blog" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="#events" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                        Contact Us
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    );
 }
