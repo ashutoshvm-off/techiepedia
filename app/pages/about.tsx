@@ -7,7 +7,9 @@ export function About() {
         background: "#0A0118",
         margin: 0,
         overflow: "hidden",
-        height: "50vh",
+        minHeight: "fit-content",
+        height: "auto",
+        padding: "2rem 1rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -60,10 +62,15 @@ export function About() {
           zIndex: 2,
           margin: "0 auto",
           color: "#fff",
-          fontSize: "1.35rem",
+          fontSize: "clamp(0.9rem, 3vw, 1.35rem)",
           fontWeight: 400,
           lineHeight: 1.6,
-          padding: "0 2vw",
+          padding: "1rem",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+          wordWrap: "break-word",
+          overflowWrap: "break-word",
+          hyphens: "auto",
         }}
       >
         Techiepedia is a vibrant community platform designed{" "}
