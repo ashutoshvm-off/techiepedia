@@ -58,9 +58,9 @@ export function Contact() {
                 top: "90%",
                 left: "65%",
                 width: "100%",
-                height: "auto",
+                height: "80%",
                 transform: "translate(-50%, -50%)",
-                maxWidth: "500px",
+                maxWidth: "450px",
                 backdropFilter: "blur(10px)",
                 zIndex: 2,
             }}>
@@ -70,7 +70,7 @@ export function Contact() {
                         color: "#fff",
                         display: "block",
                         marginBottom: "0.5rem",
-                        fontSize: "1.125rem"
+                        fontSize: "1rem"
                     }}>
                         Full Name
                     </label>
@@ -85,7 +85,7 @@ export function Contact() {
                             placeholder="Enter your Full Name"
                             style={{
                                 width: "100%",
-                                padding: "1rem",
+                                padding: ".5rem",
                                 backgroundColor: "transparent",
                                 color: "#fff",
                                 outline: "none",
@@ -102,7 +102,7 @@ export function Contact() {
                         color: "#fff",
                         display: "block",
                         marginBottom: "0.5rem",
-                        fontSize: "1.125rem"
+                        fontSize: "1rem"
                     }}>
                         Email Address
                     </label>
@@ -117,7 +117,7 @@ export function Contact() {
                             placeholder="Enter your Full Name"
                             style={{
                                 width: "100%",
-                                padding: "1rem",
+                                padding: ".5rem",
                                 backgroundColor: "transparent",
                                 color: "#fff",
                                 outline: "none",
@@ -134,7 +134,7 @@ export function Contact() {
                         color: "#fff",
                         display: "block",
                         marginBottom: "0.5rem",
-                        fontSize: "1.125rem"
+                        fontSize: "1rem"
                     }}>
                         Message
                     </label>
@@ -154,7 +154,7 @@ export function Contact() {
                                 outline: "none",
                                 border: "none",
                                 fontSize: "1rem",
-                                minHeight: "150px",
+                                minHeight: "100px",
                                 resize: "none"
                             }}
                         />
