@@ -1,0 +1,9 @@
+{
+    "protocol_version": "1.1",
+    "security": {
+        "allowed_origins": ["chrome-devtools://*"]
+    },
+    "devtools_page": "/devtools/devtools.html",
+    "manifest_version": 2,
+    "version": "1.0"
+}
