@@ -22,20 +22,20 @@ const SocialIcon = ({ Icon, href, label }: SocialIconProps) => (
 
 export function Footer() {
   return (
-    <footer style={{
-      width: "100%",
-      height: "auto",
-      padding: "24px 32px",
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      backgroundColor: "#0A0118",
-      color: "white",
-      gap: "24px",
-      margin: "2rem 0",
-      zIndex: 5,
-    }}>
+    <><section
+      style={{
+        width: "100%",
+        height: "auto",
+        padding: "24px 32px",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        backgroundColor: "#0A0118",
+        color: "white",
+        gap: "24px",
+        zIndex: 5,
+      }}>
       {/* Logo */}
       <div style={{
         fontSize: "26px",
@@ -59,19 +59,15 @@ export function Footer() {
         <SocialIcon Icon={FaTwitter} href="https://twitter.com" label="Twitter" />
         <SocialIcon Icon={FaMediumM} href="https://medium.com" label="Medium" />
       </div>
-
-
-      {/* Copyright */}
-      <div style={{
-        color: "#9B96B0",
-        fontSize: "0.875rem",
-        marginTop: "auto",
-        textAlign: "center",
-        marginBottom: "1rem",
-      }}>
+    </section><div style={{
+      color: "#9B96B0",
+      fontSize: "0.875rem",
+      marginTop: "auto",
+      textAlign: "center",
+      marginBottom: "1rem",
+    }}>
         ©2025 techiepedia. All rights reserved.
-      </div>
-    </footer>
+      </div></>
   );
 }
 

@@ -6,6 +6,8 @@ export function Contact() {
                 background: "#0A0118",
                 padding: "80px 0",
                 position: "relative",
+                overflow: "hidden",
+                height: "120vh",
                 zIndex: 1,
             }}
         >
@@ -22,6 +24,9 @@ export function Contact() {
         >
             CONTACT US
         </h2>
+        <div style={{
+            position: "relative"
+        }}>
         <img src="/hole.png" alt="" style={{
             position: "relative",
             width: "100%",
@@ -33,18 +38,13 @@ export function Contact() {
             maxWidth: "100%",
             height: "auto",
             position: "absolute",
-            top: "52%",
+            top: "90%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             zIndex: 2,
         }}/>
 
-        <div style={{ 
-            maxWidth: "500px",
-            margin: "0 auto",
-            position: "relative",
-            zIndex: 2
-        }}>
+        
             <form style={{
                 display: "flex",
                 flexDirection: "column",
@@ -54,11 +54,15 @@ export function Contact() {
                 borderRadius: "1rem",
                 border: "1px solid rgba(160,132,232,0.3)",
                 boxShadow: "0 8px 32px rgba(114,36,223,0.15)",
-                position: "relative",
+                position: "absolute",
+                top: "90%",
+                left: "65%",
+                width: "100%",
+                height: "auto",
+                transform: "translate(-50%, -50%)",
+                maxWidth: "500px",
                 backdropFilter: "blur(10px)",
-               
-                zIndex: 3,
-
+                zIndex: 2,
             }}>
                 {/* Full Name Input */}
                 <div>
