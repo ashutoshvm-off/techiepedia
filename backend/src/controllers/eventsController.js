@@ -27,6 +27,27 @@ const getEvents = async (req, res) => {
 };
 
 // POST /api/events
+/**
+ * Creates a new event in the database.
+ *
+ * @route POST /api/events
+ * @param {Object} req - Express request object
+ * @param {Event} req.body - The event data to create
+ * @param {Object} res - Express response object
+ * @returns {Promise<void>} Responds with the created event object in JSON format
+ *
+ * @example
+ * // Request body
+ * {
+ *   "title": "Tech Conference",
+ *   "description": "A full-day conference about cutting-edge tech",
+ *   "date": "2025-07-15T09:00:00.000Z",
+ *   "location": "Cochin Convention Centre"
+ * }
+ *
+ * @throws {400} If request body is missing required fields
+ * @throws {500} If a server or database error occurs
+ */
 const createEvent = async (req, res) => {
 	try {
 		const newEvent = new Event(req.body);
