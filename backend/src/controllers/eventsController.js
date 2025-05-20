@@ -1,7 +1,7 @@
 const Event = require("../models/Event");
 
 /**
- * @typedef {Object} Event
+ * @typedef {Object} EventData
  * @property {string} id - Unique identifier
  * @property {string} title - Event title
  * @property {string} date - Event date in ISO format
@@ -10,11 +10,12 @@ const Event = require("../models/Event");
 
 // GET /api/events
 /**
- * Get all events from the database.
+ * @function getEvents
+ * @description Retrieve all events from the database.
  *
  * @param {Object} req
  * @param {Object} res
- * @returns {Promise<void>} Responds with an array of {@link Event} objects
+ * @returns {Promise<void>} Responds with an array of {@link EventData} objects
  */
 
 const getEvents = async (req, res) => {
@@ -28,11 +29,11 @@ const getEvents = async (req, res) => {
 
 // POST /api/events
 /**
- * Creates a new event in the database.
+ * @function createEvent
+ * @description Create a new event in the database.
  *
- * @route POST /api/events
  * @param {Object} req - Express request object
- * @param {Event} req.body - The event data to create
+ * @param {EventData} req.body - The event data to create
  * @param {Object} res - Express response object
  * @returns {Promise<void>} Responds with the created event object in JSON format
  *
