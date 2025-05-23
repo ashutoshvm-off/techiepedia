@@ -3,10 +3,11 @@ const {
 	getGallery,
 	createGalleryItem,
 } = require("../controllers/galleryController");
+const upload = require("../middlewares/upload");
 
 const router = express.Router();
 
 router.get("/getGallery", getGallery);
-router.post("/createGalleryItem", createGalleryItem);
+router.post("/createGalleryItem", upload.single("image"), createGalleryItem);
 
 module.exports = router;
