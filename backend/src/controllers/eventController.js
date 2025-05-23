@@ -55,6 +55,7 @@ const createEvent = async (req, res) => {
 		const savedEvent = await newEvent.save();
 		res.status(201).json(savedEvent);
 	} catch (error) {
+		console.error(error.message);
 		res.status(400).json({ message: "Invalid data" });
 	}
 };
