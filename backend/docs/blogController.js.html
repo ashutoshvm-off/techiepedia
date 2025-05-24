@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: contactController.js</title>
+    <title>JSDoc: Source: blogController.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: contactController.js</h1>
+    <h1 class="page-title">Source: blogController.js</h1>
 
     
 
@@ -26,59 +26,55 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Contact = require("../models/Contact");
+            <pre class="prettyprint source linenums"><code>const Blog = require("../models/Blog");
 
-// GET /api/contact/getContact
-/**
- *@function getContact - Get all contacts
- *@description This function retrieves all contacts from the database and sends them as a JSON response.
- *
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- * @returns {Promise&lt;void>} Responds with the list of contacts in JSON format
- * @throws {Error} If there is a server error, responds with a 500 status code and an error message
- * @example
- * // Example req:
- * 	{
- *     "name": "John Doe",
- *     "email": "L6B0D@example.com",
- *     "message": "Hello, how can I help you?",
- *   },
- */
-const getContacts = async (req, res) => {
+// GET /api/blogs/getBlogs
+const getBlogs = async (req, res) => {
 	try {
-		const contacts = await Contact.find({});
-		res.json(contacts);
+		const blogs = await Blog.find({});
+		res.json(blogs);
 	} catch (error) {
 		res.status(500).json({ message: "Server Error" });
 	}
 };
 
-// POST /api/contact/createContact
+// POST /api/blogs/createBlog
 /**
- *@function createContact
- * @description Create a new contact
+ *@function createBlog
+ *@description Create a new blog post in the database.
  *
- * @param {string} req.body.name - The name of the contact
- * @param {string} req.body.email - The email of the contact
- * @param {string} req.body.message - The message from the contact
+ * @param {Object} req - Express request object
+ * @param {string} req.body.title - The title of the blog post
+ * @param {string} req.body.content - The content of the blog post
+ * @param {string} req.body.imageUrl - The URL of the blog post image
+ * @param {Object} req.file - The uploaded image file
+ * @param {string} req.body.author - The author of the blog post
  * @param {Object} res - Express response object
- * @returns {Promise&lt;void>} Responds with the created contact object in JSON format
+ * @returns {Promise&lt;void>} Responds with the created blog post object in JSON format
  */
-const createContact = async (req, res) => {
+const createBlog = async (req, res) => {
 	try {
-		const newContact = new Contact(req.body);
-		const savedContact = await newContact.save();
-		res.status(201).json(savedContact);
+		const imageUrl = req.file
+			? req.file.path
+			: req.body.imageUrl
+			? req.body.imageUrl
+			: null;
+		if (!req.body.title || !req.body.content) {
+			return res
+				.status(400)
+				.json({ message: "Title and content are required" });
+		}
+		const newBlog = new Blog({ ...req.body, imageUrl });
+		const savedBlog = await newBlog.save();
+		res.status(201).json(savedBlog);
 	} catch (error) {
 		res.status(400).json({ message: "Invalid data" });
-		console.error(error.message);
 	}
 };
 
 module.exports = {
-	getContacts,
-	createContact,
+	getBlogs,
+	createBlog,
 };
 </code></pre>
         </article>
