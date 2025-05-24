@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import  Hero  from "./hero";
+import { useState, useEffect } from "react";
+import Hero from "./hero";
 import { Navbar } from "./navbar";
 import { About } from "./about";
 import { Events } from "./events";
@@ -19,39 +19,41 @@ export default function Page() {
       setIsMobile(window.innerWidth <= 768);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return (
-    <main 
-      className="bg-black text-white font-sans" 
-      style={{ 
-        paddingTop: "80px",
+    <main
+      className="bg-black text-white font-sans"
+      style={{
+        paddingTop: isMobile ? "60px" : "80px",
         position: isMobile ? "relative" : "static",
-        margin: isMobile ? "0 auto" : "0",
+        margin: 0,
         width: "100%",
         maxWidth: "100%",
-        overflow: "hidden"
-      }}>
+        overflow: "hidden",
+      }}
+    >
       <Navbar />
-      <div style={{ 
-        marginTop: "2rem",
-        position: isMobile ? "relative" : "static",
-        width: "100%",
-        maxWidth: isMobile ? "100vw" : "none",
-        padding: isMobile ? "0 1rem" : "0"
-      }}>
+      <div
+        style={{
+          marginTop: isMobile ? "0" : "2rem",
+          position: isMobile ? "relative" : "static",
+          width: "100%",
+          maxWidth: "100%",
+          padding: 0,
+        }}
+      >
         <Hero />
       </div>
       <About />
-      <Events />      
+      <Events />
       <GlowingGridSection />
       <Blog />
       <Join />
       <Contact />
       <Footer />
-
     </main>
   );
 }
