@@ -24,6 +24,15 @@ export function Navbar() {
         };
     }, []);
 
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+        e.preventDefault();
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setIsOpen(false); // Close mobile menu if open
+        }
+    };
+
     return (
         <nav
             style={{
@@ -84,8 +93,10 @@ export function Navbar() {
             >
                 <li>
                     <a
+                        onClick={(e) => scrollToSection(e, 'home')}
                         href="/"
                         style={{
+                            cursor: 'pointer',
                             color: "#F9F8FC",
                             fontFamily: "Poppins",
                             fontSize: "18px",
@@ -100,27 +111,47 @@ export function Navbar() {
                     </a>
                 </li>
                 <li>
-                    <a href="#about" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                    <a 
+                        onClick={(e) => scrollToSection(e, 'about')} 
+                        href="#about" 
+                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
+                    >
                         About Us
                     </a>
                 </li>
                 <li>
-                    <a href="#events" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                    <a 
+                        onClick={(e) => scrollToSection(e, 'events')} 
+                        href="#events" 
+                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
+                    >
                         Events
                     </a>
                 </li>
                 <li>
-                    <a href="#gallery" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                    <a 
+                        onClick={(e) => scrollToSection(e, 'gallery')} 
+                        href="#gallery" 
+                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
+                    >
                         Gallery
                     </a>
                 </li>
                 <li>
-                    <a href="#blog" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                    <a 
+                        onClick={(e) => scrollToSection(e, 'blog')} 
+                        href="#blog" 
+                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
+                    >
                         Blogs
                     </a>
                 </li>
                 <li>
-                    <a href="#contact" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                    <a 
+                        onClick={(e) => scrollToSection(e, 'contact')} 
+                        href="#contact" 
+                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
+                    >
                         Contact Us
                     </a>
                 </li>
