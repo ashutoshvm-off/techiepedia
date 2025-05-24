@@ -8,6 +8,7 @@ import { Events } from "./events";
 import { Blog } from "./blog";
 import { Join } from "./join";
 import { Contact } from "./contact";
+import GlowingGridSection from "./gallery";
 import Footer from "./footer";
 
 export default function Page() {
@@ -44,7 +45,8 @@ export default function Page() {
         <Hero />
       </div>
       <About />
-      <Events />
+      <Events />      
+      <GlowingGridSection />
       <Blog />
       <Join />
       <Contact />
