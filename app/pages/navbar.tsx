@@ -30,7 +30,7 @@ export function Navbar() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: isMobile ? "1rem" : "1.5rem 3rem 1.5rem 2rem",
+                padding: isMobile ? "0.5rem" : "1.00rem 2rem",  // reduced padding
                 background: isScrolled ? "rgba(255, 255, 255, 0.1)" : "transparent",
                 backdropFilter: isScrolled ? "blur(10px)" : "none",
                 color: "#fff",
@@ -42,7 +42,7 @@ export function Navbar() {
                 transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
             }}
         >
-            <div style={{ fontWeight: "bold", fontSize: "1.5rem", letterSpacing: "-1px" }}>
+            <div style={{ fontWeight: "bold", fontSize: "1.25rem", letterSpacing: "-1px" }}>
                 techiepedia
             </div>
             
@@ -75,9 +75,9 @@ export function Navbar() {
                     listStyle: "none",
                     gap: isMobile ? "1rem" : "2.5rem",
                     margin: 0,
-                    padding: isMobile ? "1rem" : 0,
+                    padding: isMobile ? "0.5rem" : 0,  // reduced padding
                     fontWeight: 500,
-                    fontSize: "1.1rem",
+                    fontSize: "1rem",  // reduced font size
                     boxShadow: isMobile ? "0 4px 6px rgba(0,0,0,0.1)" : "none",
                     transition: "all 0.3s ease",
                 }}
@@ -105,13 +105,13 @@ export function Navbar() {
                     </a>
                 </li>
                 <li>
-                    <a href="#blog" style={{ color: "#F9F8FC", textDecoration: "none" }}>
-                        Blog
+                    <a href="#events" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                        Events
                     </a>
                 </li>
                 <li>
-                    <a href="#events" style={{ color: "#F9F8FC", textDecoration: "none" }}>
-                        Events
+                    <a href="#blog" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                        Blogs
                     </a>
                 </li>
                 <li>
