@@ -37,9 +37,9 @@ export function Navbar() {
         <nav
             style={{
                 display: "flex",
-                justifyContent: "space-between",
                 alignItems: "center",
-                padding: isMobile ? "0.5rem" : "1.00rem 2rem",  // reduced padding
+                justifyContent: isMobile ? "center" : "space-between",
+                padding: isMobile ? "0.5rem 1rem" : "1.00rem 2rem",  // adjusted padding for mobile
                 background: isScrolled ? "rgba(255, 255, 255, 0.1)" : "transparent",
                 backdropFilter: isScrolled ? "blur(10px)" : "none",
                 color: "#fff",
@@ -51,7 +51,12 @@ export function Navbar() {
                 transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
             }}
         >
-            <div style={{ fontWeight: "bold", fontSize: "1.25rem", letterSpacing: "-1px" }}>
+            <div style={{ 
+                fontWeight: "bold", 
+                fontSize: "1.25rem", 
+                letterSpacing: "-1px",
+                flex: 1  // This helps with centering
+            }}>
                 techiepedia
             </div>
             
@@ -66,6 +71,10 @@ export function Navbar() {
                         cursor: 'pointer',
                         zIndex: 1001,
                         padding: '0.5rem',
+                        position: 'absolute',
+                        right: '1rem',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
                     }}
                 >
                     {isOpen ? '×' : '☰'}
