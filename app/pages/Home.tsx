@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type { Dimensions, ResponsiveSpacing } from "../types/styles";
 import Hero from "./hero";
 import { Navbar } from "./navbar";
 import { About } from "./about";
@@ -13,22 +14,43 @@ import Footer from "./footer";
 
 export default function Page() {
   const [isMobile, setIsMobile] = useState(false);
+  const [dimensions, setDimensions] = useState<Dimensions>({ width: 0, height: 0 });
 
   useEffect(() => {
-    const checkMobile = () => {
+    const updateLayout = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
       setIsMobile(window.innerWidth <= 768);
     };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
   }, []);
+
+  const getResponsiveSpacing = (): ResponsiveSpacing => {
+    const baseSize = Math.min(dimensions.width, dimensions.height);
+    return {
+      padding: {
+        vertical: `${Math.max(10, Math.min(80, baseSize * 0.04))}px`,
+        horizontal: `${Math.max(15, Math.min(40, baseSize * 0.03))}px`,
+      },
+      margin: {
+        vertical: `${Math.max(5, Math.min(30, baseSize * 0.02))}px`,
+        horizontal: `${Math.max(10, Math.min(20, baseSize * 0.015))}px`,
+      },
+    };
+  };
+
+  const spacing = getResponsiveSpacing();
 
   return (
     <main
       className="bg-black text-white font-sans"
       style={{
-        paddingTop: isMobile ? "60px" : "80px",
-        position: isMobile ? "relative" : "static",
+        padding: `${spacing.padding.vertical} ${spacing.padding.horizontal}`,
+        position: "relative",
         margin: 0,
         width: "100%",
         maxWidth: "100%",
@@ -38,11 +60,10 @@ export default function Page() {
       <Navbar />
       <div
         style={{
-          marginTop: isMobile ? "0" : "2rem",
-          position: isMobile ? "relative" : "static",
+          margin: `${spacing.margin.vertical} ${spacing.margin.horizontal}`,
+          position: "relative",
           width: "100%",
           maxWidth: "100%",
-          padding: 0,
         }}
       >
         <Hero />
