@@ -40,7 +40,7 @@ export function Navbar() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: isMobile ? "center" : "space-between",
-                padding: isMobile ? "0.5rem 1rem" : "1.00rem 2rem",  // adjusted padding for mobile
+                padding: isMobile ? "0.5rem 1rem" : "1.00rem 2rem",
                 background: isScrolled ? "rgba(255, 255, 255, 0.1)" : "transparent",
                 backdropFilter: isScrolled ? "blur(10px)" : "none",
                 color: "#fff",
@@ -49,14 +49,18 @@ export function Navbar() {
                 top: 0,
                 zIndex: 1000,
                 borderBottom: "1px solid rgba(255,255,255,0.08)",
-                transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
+                transition: "all 0.3s ease",
             }}
         >
             <div style={{ 
                 fontWeight: "bold", 
                 fontSize: "1.25rem", 
                 letterSpacing: "-1px",
-                flex: 1  // This helps with centering
+                position: 'relative',
+                flex: 1,
+                zIndex: 1001,
+                pointerEvents: 'auto',
+                background: 'transparent',
             }}>
                 techiepedia
             </div>
@@ -86,16 +90,24 @@ export function Navbar() {
                 style={{
                     display: isMobile ? (isOpen ? "flex" : "none") : "flex",
                     flexDirection: isMobile ? "column" : "row",
-                    position: isMobile ? "fixed" : "relative",
-                    top: isMobile ? "60px" : "auto",
+                    position: isMobile ? "absolute" : "relative",
+                    top: isMobile ? "100%" : "auto",
                     left: isMobile ? 0 : "auto",
                     width: isMobile ? "100%" : "auto",
-                    ...(isMobile ? mobileDropdownStyle : {}),
+                    ...(isMobile ? {
+                        ...mobileDropdownStyle,
+                        background: 'rgba(10, 1, 24, 0.35)',
+                        backdropFilter: 'blur(25px) saturate(200%)',
+                        WebkitBackdropFilter: 'blur(25px) saturate(200%)',
+                    } : {
+                        position: "relative",
+                        background: 'transparent'
+                    }),
                     listStyle: "none",
                     gap: isMobile ? "1rem" : "2.5rem",
                     margin: 0,
-                    transition: "all 0.3s ease",
-                }}
+                    padding: isMobile ? "1.5rem" : 0,
+                } as React.CSSProperties}
             >
                 <li>
                     <a
