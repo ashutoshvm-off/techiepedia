@@ -13,17 +13,40 @@ const Event = require("../models/Event");
  * @function getEvents
  * @description Retrieve all events from the database.
  *
- * @param {Object} req
- * @param {Object} res
- * @returns {Promise<void>} Responds with a JSON array of {@link EventData} objects
+ * @param {Object} req - Express request object
+ * @param {string} req.query.page - The page number for pagination
+ * @param {string} req.query.limit - The number of items per page
+ * @param {Object} res - Express response object
+ * @param {EventData[]} res.body.events - Array of event objects
+ * @param {number} res.body.page - Current page number
+ * @param {number} res.body.totalPages - Total number of pages
+ * @param {number} res.body.totalItems - Total number of items
+ * @returns {Promise<void>} Responds with an object containing the events, current page, total pages, and total items in JSON format
+ * @throws {500} If a server or database error occurs
+ * @throws {400} If the page or limit query parameters are invalid
  */
 
 const getEvents = async (req, res) => {
 	try {
-		const events = await Event.find({});
-		res.json(events);
-	} catch (error) {
-		res.status(500).json({ message: "Server Error" });
+		const page = parseInt(req.query.page) || 1; // default: page 1
+		const limit = parseInt(req.query.limit) || 10; // default: 10 items
+		const skip = (page - 1) * limit;
+
+		const events = await Event.find()
+			.sort({ date: -1 }) //sort by date descending
+			.skip(skip)
+			.limit(limit); // limit the number of documents per page
+
+		const total = await Event.countDocuments(); // count total documents
+
+		res.json({
+			page,
+			totalPages: Math.ceil(total / limit),
+			totalItems: total,
+			events,
+		});
+	} catch (err) {
+		res.status(500).json({ message: "Server error" });
 	}
 };
 

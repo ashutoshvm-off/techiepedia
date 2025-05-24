@@ -11,6 +11,19 @@ const getBlogs = async (req, res) => {
 };
 
 // POST /api/blogs/createBlog
+/**
+ *@function createBlog
+ *@description Create a new blog post in the database.
+ *
+ * @param {Object} req - Express request object
+ * @param {string} req.body.title - The title of the blog post
+ * @param {string} req.body.content - The content of the blog post
+ * @param {string} req.body.imageUrl - The URL of the blog post image
+ * @param {Object} req.file - The uploaded image file
+ * @param {string} req.body.author - The author of the blog post
+ * @param {Object} res - Express response object
+ * @returns {Promise<void>} Responds with the created blog post object in JSON format
+ */
 const createBlog = async (req, res) => {
 	try {
 		const imageUrl = req.file
