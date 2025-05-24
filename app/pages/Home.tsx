@@ -47,7 +47,6 @@ export default function Page() {
 
   return (
     <main
-      className="bg-black text-white font-sans"
       style={{
         padding: `${spacing.padding.vertical} ${spacing.padding.horizontal}`,
         position: "relative",
@@ -56,6 +55,7 @@ export default function Page() {
         maxWidth: "100%",
         overflow: "hidden",
       }}
+      className="bg-black text-white font-sans"
     >
       <Navbar />
       <div

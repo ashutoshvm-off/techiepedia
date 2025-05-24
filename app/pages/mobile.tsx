@@ -3,15 +3,22 @@
 import { useEffect, useState } from 'react';
 
 export const mobileDropdownStyle = {
-  background: 'rgba(10, 1, 24, 0.35)',
-  backdropFilter: 'blur(25px) saturate(180%)',
-  WebkitBackdropFilter: 'blur(25px) saturate(180%)',
   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
   borderTop: '1px solid rgba(255, 255, 255, 0.08)',
   padding: '1.5rem',
   alignItems: 'center',
   zIndex: 999,
-};
+  position: 'absolute' as const,
+  left: 0,
+  right: 0,
+  top: '100%',
+  isolation: 'isolate',
+  willChange: 'backdrop-filter, transform',
+  WebkitTransform: 'translateZ(0)',
+  transform: 'translateZ(0)',
+  backfaceVisibility: 'hidden',
+  WebkitBackfaceVisibility: 'hidden',
+} as const;
 
 export default function MobileResponsive({ children }: { children: React.ReactNode }) {
   const [isMobile, setIsMobile] = useState(false);

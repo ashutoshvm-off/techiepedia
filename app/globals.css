@@ -28,3 +28,21 @@ body {
     text-decoration: none;
   }
 }
+
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(100px) saturate(180%);
+  backdrop-filter: blur(100px) saturate(180%);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+  background: rgba(10, 1, 24, 0.85) !important;
+}
+
+.mobile-menu {
+  -webkit-backdrop-filter: blur(150px) saturate(180%);
+  backdrop-filter: blur(150px) saturate(180%);
+  background: rgba(10, 1, 24, 0.15);
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+}

@@ -90,26 +90,32 @@ export function Navbar() {
                 style={{
                     display: isMobile ? (isOpen ? "flex" : "none") : "flex",
                     flexDirection: isMobile ? "column" : "row",
-                    position: isMobile ? "absolute" : "relative",
-                    top: isMobile ? "100%" : "auto",
-                    left: isMobile ? 0 : "auto",
-                    width: isMobile ? "100%" : "auto",
                     ...(isMobile ? {
-                        ...mobileDropdownStyle,
-                        background: 'rgba(10, 1, 24, 0.35)',
-                        backdropFilter: 'blur(25px) saturate(200%)',
-                        WebkitBackdropFilter: 'blur(25px) saturate(200%)',
+                        position: "fixed",
+                        top: "60px",
+                        left: 0,
+                        width: "100%",
+                        background: 'rgba(10, 1, 24, 0.85)',
+                        backdropFilter: 'blur(100px) saturate(180%)',
+                        WebkitBackdropFilter: 'blur(100px) saturate(180%)',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+                        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                        padding: '1.5rem',
+                        zIndex: 999,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center',
                     } : {
                         position: "relative",
                         background: 'transparent'
                     }),
                     listStyle: "none",
-                    gap: isMobile ? "1rem" : "2.5rem",
+                    gap: isMobile ? "1.5rem" : "2.5rem",
                     margin: 0,
-                    padding: isMobile ? "1.5rem" : 0,
                 } as React.CSSProperties}
+                className="backdrop-blur"
             >
-                <li>
+                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a
                         href="/"
                         style={{
@@ -122,12 +128,14 @@ export function Navbar() {
                             letterSpacing: "-0.14px",
                             textDecoration: "none",
                             background: "rgba(255,255,255,0.04)",
+                            display: "inline-block",
+                            width: isMobile ? "auto" : "100%",
                         }}
                     >
                         Home
                     </a>
                 </li>
-                <li>
+                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
                         onClick={(e) => scrollToSection(e, 'about')} 
                         href="#about" 
@@ -136,7 +144,7 @@ export function Navbar() {
                         About Us
                     </a>
                 </li>
-                <li>
+                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
                         onClick={(e) => scrollToSection(e, 'events')} 
                         href="#events" 
@@ -145,7 +153,7 @@ export function Navbar() {
                         Events
                     </a>
                 </li>
-                <li>
+                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
                         onClick={(e) => scrollToSection(e, 'gallery')} 
                         href="#gallery" 
@@ -154,7 +162,7 @@ export function Navbar() {
                         Projects
                     </a>
                 </li>
-                <li>
+                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
                         onClick={(e) => scrollToSection(e, 'blog')} 
                         href="#blog" 
@@ -163,7 +171,7 @@ export function Navbar() {
                         Blogs
                     </a>
                 </li>
-                <li>
+                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
                         onClick={(e) => scrollToSection(e, 'contact')} 
                         href="#contact" 
