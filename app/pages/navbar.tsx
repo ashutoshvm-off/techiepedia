@@ -110,6 +110,11 @@ export function Navbar() {
                     </a>
                 </li>
                 <li>
+                    <a href="#gallery" style={{ color: "#F9F8FC", textDecoration: "none" }}>
+                        Gallery
+                    </a>
+                </li>
+                <li>
                     <a href="#blog" style={{ color: "#F9F8FC", textDecoration: "none" }}>
                         Blogs
                     </a>
