@@ -1,3 +1,4 @@
+const multer = require("multer");
 const Event = require("../models/Event");
 
 /**
@@ -57,7 +58,7 @@ const getEvents = async (req, res) => {
  *
  * @param {Object} req - Express request object
  * @param {EventData} req.body - The event data to create
- * @param {Object} req.file - The uploaded image file
+ * @param {Express.Multer.File} req.file - The uploaded image file
  * @param {string} req.file.path - The path to the uploaded image file
  * @param {Object} res - Express response object
  * @returns {Promise<void>} Responds with the created event object in JSON format
@@ -67,6 +68,7 @@ const getEvents = async (req, res) => {
  * {
  *   "title": "Tech Conference",
  *   "description": "A full-day conference about cutting-edge tech",
+ * 	 "image": [binary data],"
  *   "date": "2025-07-15T09:00:00.000Z",
  *   "location": "Cochin Convention Centre"
  * }

@@ -2,7 +2,7 @@ const Contact = require("../models/Contact");
 
 // GET /api/contact/getContact
 /**
- *@function getContact - Get all contacts
+ *@function getContact
  *@description This function retrieves all contacts from the database and sends them as a JSON response.
  *
  * @param {Object} req - Express request object

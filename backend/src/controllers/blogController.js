@@ -69,10 +69,21 @@ const getBlogs = async (req, res) => {
  * @param {string} req.body.title - The title of the blog post
  * @param {string} req.body.content - The content of the blog post
  * @param {string} req.body.imageUrl - The URL of the blog post image
- * @param {Object} req.file - The uploaded image file
+ * @param {Express.Multer.File} req.file - Image file (uploaded using multipart/form-data)
  * @param {string} req.body.author - The author of the blog post
  * @param {Object} res - Express response object
  * @returns {Promise<void>} Responds with the created blog post object in JSON format
+ * @throws {500} If a server or database error occurs
+ * @throws {400} If the title or content is missing
+ * @example
+ * // Example request
+ * POST /api/blogs/createBlog
+ * Content-Type: multipart/form-data
+ * Body:
+ * title=New Blog Post
+ * content=This is the content of the new blog post.
+ * imageUrl=[binary image data]
+ * author=Author Name
  */
 const createBlog = async (req, res) => {
 	try {

@@ -265,7 +265,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Express.Multer.File</span>
 
 
             
@@ -275,7 +275,7 @@
 
             
 
-            <td class="description last">The uploaded image file</td>
+            <td class="description last">Image file (uploaded using multipart/form-data)</td>
         </tr>
 
     
@@ -392,6 +392,62 @@
 
 
 
+<h5>Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If a server or database error occurs
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">500</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If the title or content is missing
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">400</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
 
 
 <h5>Returns:</h5>
@@ -418,6 +474,18 @@
     
 
 
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Example request
+POST /api/blogs/createBlog
+Content-Type: multipart/form-data
+Body:
+title=New Blog Post
+content=This is the content of the new blog post.
+imageUrl=[binary image data]
+author=Author Name</code></pre>
 
 
 
@@ -770,7 +838,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Express.Multer.File</span>
 
 
             
@@ -900,7 +968,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="eventController.js.html">eventController.js</a>, <a href="eventController.js.html#line54">line 54</a>
+        <a href="eventController.js.html">eventController.js</a>, <a href="eventController.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -1013,6 +1081,7 @@
 {
   "title": "Tech Conference",
   "description": "A full-day conference about cutting-edge tech",
+	 "image": [binary data],"
   "date": "2025-07-15T09:00:00.000Z",
   "location": "Cochin Convention Centre"
 }</code></pre>
@@ -1854,7 +1923,7 @@ GET /api/blogs/getBlogs?page=1&amp;limit=10</code></pre>
     
 
     
-    <h4 class="name" id="getContact-Getallcontacts"><span class="type-signature"></span>getContact - Get all contacts<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="getContact"><span class="type-signature"></span>getContact<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -2389,7 +2458,7 @@ GET /api/blogs/getBlogs?page=1&amp;limit=10</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="eventController.js.html">eventController.js</a>, <a href="eventController.js.html#line12">line 12</a>
+        <a href="eventController.js.html">eventController.js</a>, <a href="eventController.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -3152,7 +3221,7 @@ GET /api/gallery/getGallery?page=1&amp;limit=10</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="eventController.js.html">eventController.js</a>, <a href="eventController.js.html#line3">line 3</a>
+        <a href="eventController.js.html">eventController.js</a>, <a href="eventController.js.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -3371,13 +3440,13 @@ GET /api/gallery/getGallery?page=1&amp;limit=10</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createBlog">createBlog</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#createEvent">createEvent</a></li><li><a href="global.html#createGalleryItem">createGalleryItem</a></li><li><a href="global.html#getBlogs">getBlogs</a></li><li><a href="global.html#getContact-Getallcontacts">getContact - Get all contacts</a></li><li><a href="global.html#getEvents">getEvents</a></li><li><a href="global.html#getGallery">getGallery</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#createBlog">createBlog</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#createEvent">createEvent</a></li><li><a href="global.html#createGalleryItem">createGalleryItem</a></li><li><a href="global.html#getBlogs">getBlogs</a></li><li><a href="global.html#getContact">getContact</a></li><li><a href="global.html#getEvents">getEvents</a></li><li><a href="global.html#getGallery">getGallery</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sat May 24 2025 11:04:08 GMT+0530 (India Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sat May 24 2025 11:49:55 GMT+0530 (India Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
