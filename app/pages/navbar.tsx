@@ -133,7 +133,7 @@ export function Navbar() {
                         href="#gallery" 
                         style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
                     >
-                        Gallery
+                        Projects
                     </a>
                 </li>
                 <li>
