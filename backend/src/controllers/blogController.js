@@ -1,11 +1,61 @@
 const Blog = require("../models/Blog");
 
 // GET /api/blogs/getBlogs
+/**
+ * @function getBlogs
+ * @description Retrieve all blog posts from the database.
+ *
+ * @param {Object} req - Express request object
+ * @param {string} req.query.page - The page number for pagination
+ * @param {string} req.query.limit - The number of items per page
+ * @param {Object} res - Express response object
+ * @param {Object[]} res.body.blogs - Array of blog post objects
+ * @param {number} res.body.page - Current page number
+ * @param {number} res.body.totalPages - Total number of pages
+ * @param {number} res.body.totalItems - Total number of items
+ * @returns {Promise<void>} Responds with an object containing the blogs, current page, total pages, and total items in JSON format
+ * @throws {500} If a server or database error occurs
+ * @throws {400} If the page or limit query parameters are invalid
+ * @throws {404} If no blog posts are found
+ * @example
+ * // Example request
+ * GET /api/blogs/getBlogs?page=1&limit=10
+ * @example
+ * // Example response
+ * {
+ *   "page": 1,
+ *   "totalPages": 1,
+ *   "totalItems": 1,
+ *   "blogs": [
+ *     {
+ *       "title": "Blog Post 1",
+ *       "content": "Content for Blog Post 1",
+ *       "imageUrl": "https://example.com/image1.jpg",
+ * 	 	 "author": "Author 1",
+ *       "publishedAt": "2023-08-01T00:00:00.000Z"
+ *     }
+ *   ]
+ * }
+ */
 const getBlogs = async (req, res) => {
 	try {
-		const blogs = await Blog.find({});
-		res.json(blogs);
+		const page = parseInt(req.query.page) || 1; // default: page 1
+		const limit = parseInt(req.query.limit) || 10; // default: 10 items
+		const skip = (page - 1) * limit;
+		const total = await Blog.countDocuments(); // count total documents
+		const totalPages = Math.ceil(total / limit); // calculate total pages
+		const blogs = await Blog.find()
+			.sort({ createdAt: -1 }) // sort by creation date descending
+			.skip(skip)
+			.limit(limit); // limit the number of documents per page
+		res.json({
+			page,
+			totalPages,
+			totalItems: total,
+			blogs,
+		});
 	} catch (error) {
+		console.error("Error fetching blogs:", error.message);
 		res.status(500).json({ message: "Server Error" });
 	}
 };
