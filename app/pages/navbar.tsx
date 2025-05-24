@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { mobileDropdownStyle } from './mobile';
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -85,18 +86,14 @@ export function Navbar() {
                 style={{
                     display: isMobile ? (isOpen ? "flex" : "none") : "flex",
                     flexDirection: isMobile ? "column" : "row",
-                    position: isMobile ? "absolute" : "relative",
-                    top: isMobile ? "100%" : "auto",
-                    left: isMobile ? "0" : "auto",
+                    position: isMobile ? "fixed" : "relative",
+                    top: isMobile ? "60px" : "auto",
+                    left: isMobile ? 0 : "auto",
                     width: isMobile ? "100%" : "auto",
-                    background: isMobile ? "#0A0118" : "transparent",
+                    ...(isMobile ? mobileDropdownStyle : {}),
                     listStyle: "none",
                     gap: isMobile ? "1rem" : "2.5rem",
                     margin: 0,
-                    padding: isMobile ? "0.5rem" : 0,  // reduced padding
-                    fontWeight: 500,
-                    fontSize: "1rem",  // reduced font size
-                    boxShadow: isMobile ? "0 4px 6px rgba(0,0,0,0.1)" : "none",
                     transition: "all 0.3s ease",
                 }}
             >
