@@ -5,14 +5,23 @@ import { useState, useEffect } from 'react';
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth <= 768);
         };
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 0);
+        };
+        
         checkMobile();
         window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     return (
@@ -22,13 +31,15 @@ export function Navbar() {
                 justifyContent: "space-between",
                 alignItems: "center",
                 padding: isMobile ? "1rem" : "1.5rem 3rem 1.5rem 2rem",
-                background: "transparent",
+                background: isScrolled ? "rgba(255, 255, 255, 0.1)" : "transparent",
+                backdropFilter: isScrolled ? "blur(10px)" : "none",
                 color: "#fff",
                 position: "fixed",
                 width: "100%",
                 top: 0,
                 zIndex: 1000,
                 borderBottom: "1px solid rgba(255,255,255,0.08)",
+                transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
             }}
         >
             <div style={{ fontWeight: "bold", fontSize: "1.5rem", letterSpacing: "-1px" }}>
