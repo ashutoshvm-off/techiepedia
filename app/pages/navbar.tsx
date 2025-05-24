@@ -93,7 +93,6 @@ export function Navbar() {
             >
                 <li>
                     <a
-                        onClick={(e) => scrollToSection(e, 'home')}
                         href="/"
                         style={{
                             cursor: 'pointer',
