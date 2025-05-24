@@ -17,7 +17,7 @@ export function Contact() {
                 color: "#7ee6ff",
                 fontWeight: 700,
                 fontSize: "2.5rem",
-                marginBottom: "2.5rem",
+                marginBottom: "0.5rem", // reduced from 2.5rem
                 letterSpacing: "1px",
                 zIndex: 2,
             }}
