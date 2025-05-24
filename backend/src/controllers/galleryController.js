@@ -48,7 +48,7 @@ const createGalleryItem = async (req, res) => {
 		}
 
 		if (!req.body.folder) {
-			throw new Error("Folder name is required");
+			req.body.folder = "gallery";
 		}
 
 		const imageUrl = req.file.path;

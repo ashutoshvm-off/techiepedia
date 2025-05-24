@@ -3,7 +3,7 @@ const {
 	getGallery,
 	createGalleryItem,
 } = require("../controllers/galleryController");
-const upload = require("../middlewares/upload");
+const upload = require("../middlewares/uploadGallery");
 
 const router = express.Router();
 

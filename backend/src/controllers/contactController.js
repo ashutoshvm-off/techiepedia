@@ -44,6 +44,7 @@ const createContact = async (req, res) => {
 		res.status(201).json(savedContact);
 	} catch (error) {
 		res.status(400).json({ message: "Invalid data" });
+		console.error(error.message);
 	}
 };
 

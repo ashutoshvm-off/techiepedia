@@ -6,7 +6,7 @@ const {
 
 const router = express.Router();
 
-router.get("/getContact", getContacts);
+router.get("/getContacts", getContacts);
 router.post("/createContact", createContact);
 
 module.exports = router;

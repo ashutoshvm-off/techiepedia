@@ -1,6 +1,6 @@
 const express = require("express");
 const { getEvents, createEvent } = require("../controllers/eventController");
-const upload = require("../middlewares/upload");
+const upload = require("../middlewares/uploadEvents");
 
 const router = express.Router();
 
