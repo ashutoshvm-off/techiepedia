@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        /* Force desktop layout */
+        html, body {
+            min-width: 1024px;
+            width: 1024px !important;
+            overflow-x: auto;
+            -webkit-text-size-adjust: none;
+        }
+        
+        .container {
+            min-width: 1024px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Prevent mobile optimizations */
+        * {
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+        }
+    </style>
+    <script>
+        // Force desktop mode
+        function forceDesktopMode() {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            viewport.setAttribute('content', 'width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+            
+            // Force Chrome desktop mode
+            if (navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
+                document.documentElement.style.zoom = 1;
+            }
+        }
+
+        // Run on load and resize
+        window.addEventListener('load', forceDesktopMode);
+        window.addEventListener('resize', forceDesktopMode);
+    </script>
+</head>
+<body>
+    <!-- ...existing content... -->
+</body>
+</html>
