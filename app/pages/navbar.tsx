@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { mobileDropdownStyle } from './mobile';
+import { useNavigate } from 'react-router-dom';
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const checkMobile = () => {
@@ -164,10 +167,10 @@ export function Navbar() {
                 </li>
                 <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
-                        onClick={(e) => scrollToSection(e, 'blog')} 
-                        href="#blog" 
+              onClick={() => navigate('/blog')}
                         style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
                     >
+
                         Blogs
                     </a>
                 </li>

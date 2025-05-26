@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { Dimensions, ResponsiveSpacing } from "../types/styles";
+
 import Hero from "./hero";
 import { Navbar } from "./navbar";
 import { About } from "./about";
@@ -75,6 +76,7 @@ export default function Page() {
       <Join />
       <Contact />
       <Footer />
+
     </main>
   );
 }
