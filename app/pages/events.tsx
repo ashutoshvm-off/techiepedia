@@ -1,10 +1,10 @@
 'use client';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 export function Events() {
   const [isMobile, setIsMobile] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -125,7 +125,7 @@ export function Events() {
                 boxShadow: "0 2px 12px rgba(64,0,153,0.10)",
                 transition: "background 0.2s",
               }}
-              onClick={() => navigate('/event')}
+              onClick={() => navigate.push('/event')}
 
             >
               REGISTER NOW
