@@ -1,8 +1,8 @@
 "use client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home";
-import Eventsection from "./sections/event-section";
-import BlogSection from "./sections/blog-section";
+import Eventsection from "./pages/event-section";
+import BlogSection from "./pages/blog-section";
 
 export default function App() {
   return (
