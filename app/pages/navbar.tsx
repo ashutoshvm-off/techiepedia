@@ -167,7 +167,7 @@ export function Navbar() {
                 </li>
                 <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
-              onClick={() => navigate('/blog')}
+              onClick={() => navigate('/blog-section')}
                         style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
                     >
 
