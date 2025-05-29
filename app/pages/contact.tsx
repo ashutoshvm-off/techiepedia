@@ -24,26 +24,19 @@ export function Contact() {
         CONTACT US
       </h2>
         <div
-      className="
-        relative 
-        w-full 
-        max-w-[1200px] 
-        mx-auto 
-        aspect-[16/9] 
-        bg-[url('/bg-contact.png')] 
-        bg-center 
-        bg-no-repeat 
-        bg-cover 
-        flex 
-        flex-row 
-        items-center 
-        justify-center 
-        p-4 
-        md:p-8
-        md:gap-8
-        flex-wrap
-        md:flex-nowrap
-        "
+        style={{
+          position: "relative",
+          width: "100%",
+          backgroundImage: "url('/bg-contact.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          
+        }}
     >
       {/* Image */}
       <img

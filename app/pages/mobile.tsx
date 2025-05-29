@@ -191,18 +191,7 @@ export default function MobileResponsive({ children }: { children: React.ReactNo
       margin: 'auto',
       marginBottom: isMobile ? '0.5rem' : '1rem',
     },
-    contactSection: {
-      width: '100%',
-      display: 'grid',
-      gridTemplateColumns: '1fr',
-      gap: '1rem',
-      padding: '1.5rem auto',
-      margin: 'auto',
-    },
-    formGroup: {
-      width: '100%',
-      marginBottom: '1rem',
-    },
+    
     footer: {
       flexDirection: 'column' as const,
       textAlign: 'center' as const,
