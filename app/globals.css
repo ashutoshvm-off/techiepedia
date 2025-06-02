@@ -47,3 +47,22 @@ body {
   transform: translateZ(0);
   will-change: backdrop-filter;
 }
+
+.text-stroke {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(16, 179, 255);
+}
+
+.text-fill-none {
+  -webkit-text-fill-color: transparent;
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url('/assets/fonts/Poppins-Regular.ttf');
+}
+
+.contacts-techiepedia-bg {
+  background: url('/bg-contact.png') no-repeat center;
+  background-size: cover;
+}
