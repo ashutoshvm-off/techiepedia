@@ -1,13 +1,31 @@
-import { relative } from "path";
+"use client";
+import React, { useEffect, useState } from "react";
 
 export function Contact() {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+
+  useEffect(() => {
+          const checkMobile = () => {
+              setIsMobile(window.innerWidth <= 768);
+          };
+        checkMobile();
+
+      }, []);
   return (
     <section
       id="contact"
+      className="contacts-techiepedia-bg flex flex-col gap-5"
       style={{
         backgroundColor: "#0A0118",
-        marginTop: 20,
+        paddingTop: "3rem",
+        paddingBottom: "3rem",
+        // marginTop: 20,
         zIndex: 0,
+        width: "100%",
+        height: "100%",
+        
       }}
     >
       <h2
@@ -15,41 +33,37 @@ export function Contact() {
           textAlign: "center",
           color: "#7ee6ff",
           fontWeight: 700,
-          fontSize: "2.5rem",
-          marginBottom: "2.5rem",
+          fontSize: isMobile ? "1.5rem" : "2.5rem",
+          // marginBottom: "2.5rem",
           letterSpacing: "1px",
           zIndex: 2,
         }}
       >
         CONTACT US
       </h2>
-        <div
-        style={{
-          position: "relative",
-          width: "100%",
-          backgroundImage: "url('/bg-contact.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          
-        }}
+        <div className="flex md:flex-row flex-col justify-evenly w-full mt-5 "
+        // style={{
+        //   position: "relative",
+        //   width: "100%",
+        //   backgroundImage: "url('/bg-contact.png')",
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "no-repeat",
+        //   display: "flex",
+        //   flexDirection: "row",
+        //   alignItems: "center",
+        //   justifyContent: "center",
+
+        // }}
     >
       {/* Image */}
-      <img
-        src="/techie.png"
-        alt="Techie"
-        className="
-          max-w-[45%] 
-          w-full 
-          h-fit
-          object-cover 
-          
-        "
-      />
+<div className="flex flex-col items-center justify-center"
+  style={{
+    fontSize: isMobile ? "6rem" : "8rem", lineHeight:  "1"   , fontFamily: 'Poppins' }}
+    >
+  <h3 className=" text-stroke text-fill-none text-center font-extrabold ">techie<br />pedia</h3>
+  <h3 className="font-bold text-blue-500 p-2 rounded-lg">techie<br />pedia</h3>
+</div>
 
       {/* Form */}
         <form
