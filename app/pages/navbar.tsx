@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { mobileDropdownStyle } from './mobile';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const navigate = useNavigate();
+    const router = useRouter();
 
 
     useEffect(() => {
@@ -110,13 +110,13 @@ export function Navbar() {
                         textAlign: 'center',
                     } : {
                         position: "relative",
-                        background: 'transparent'
+                        background: 'transparent' ,
+                        backdropFilter: 'none',
                     }),
                     listStyle: "none",
                     gap: isMobile ? "1.5rem" : "2.5rem",
                     margin: 0,
                 } as React.CSSProperties}
-                className="backdrop-blur"
             >
                 <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a
@@ -167,7 +167,7 @@ export function Navbar() {
                 </li>
                 <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
-              onClick={() => navigate('/blog-section')}
+              onClick={() => router.push('/blog-section')}
                         style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
                     >
 
