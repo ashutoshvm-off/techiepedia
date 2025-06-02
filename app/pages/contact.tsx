@@ -42,19 +42,6 @@ export function Contact() {
         CONTACT US
       </h2>
         <div className="flex md:flex-row flex-col justify-evenly w-full mt-5 "
-        // style={{
-        //   position: "relative",
-        //   width: "100%",
-        //   backgroundImage: "url('/bg-contact.png')",
-        //   backgroundSize: "cover",
-        //   backgroundPosition: "center",
-        //   backgroundRepeat: "no-repeat",
-        //   display: "flex",
-        //   flexDirection: "row",
-        //   alignItems: "center",
-        //   justifyContent: "center",
-
-        // }}
     >
       {/* Image */}
 <div className="flex flex-col items-center justify-center"
