@@ -1,5 +1,6 @@
 import { FaInstagram, FaYoutube, FaLinkedinIn, FaTwitter, FaMediumM } from 'react-icons/fa';
 import { IconType } from 'react-icons';
+import { useEffect, useState } from 'react';
 
 interface SocialIconProps {
   Icon: IconType;
@@ -21,28 +22,47 @@ const SocialIcon = ({ Icon, href, label }: SocialIconProps) => (
 );
 
 export function Footer() {
+
+    const [isMobile, setIsMobile] = useState(false);
+  
+  
+    useEffect(() => {
+            const checkMobile = () => {
+                setIsMobile(window.innerWidth <= 768);
+            };
+          checkMobile();
+  
+        }, []);
+        
   return (
     <><section
       style={{
         width: "100%",
-        height: "auto",
         padding: "24px 32px",
-        display: "flex",
-        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
         backgroundColor: "#0A0118",
         color: "white",
-        gap: "24px",
         zIndex: 5,
-      }}>
+        position: "relative",
+        bottom: 0,
+      }} 
+      className='flex md:flex-row flex-col md:items-center md:justify-evenly justify-center md:gap-6 gap-3 md:height-[5rem] height-[7rem]]'>
       {/* Logo */}
-      <div style={{
-        fontSize: "26px",
-        fontWeight: "bold",
+      <div className='md:text-2xl text-sm font-bold'
+       style={{
         letterSpacing: "0.05em"
       }}>
         techiepedia
+      </div>
+
+    <div className='flex items-center'
+    
+    style={{
+      color: "#9B96B0",
+      fontSize: "0.875rem",
+      textAlign: "center",
+    }}>
+        ©2025 techiepedia. All rights reserved.
       </div>
 
       {/* Social Icons */}
@@ -59,15 +79,8 @@ export function Footer() {
         <SocialIcon Icon={FaTwitter} href="https://twitter.com" label="Twitter" />
         <SocialIcon Icon={FaMediumM} href="https://medium.com" label="Medium" />
       </div>
-    </section><div style={{
-      color: "#9B96B0",
-      fontSize: "0.875rem",
-      marginTop: "auto",
-      textAlign: "center",
-      marginBottom: "1rem",
-    }}>
-        ©2025 techiepedia. All rights reserved.
-      </div></>
+    </section>
+    </>
   );
 }
 
