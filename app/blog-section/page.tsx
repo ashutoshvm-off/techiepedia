@@ -1,39 +1,83 @@
+"use client";
 import React from 'react';
-
+import {Footer} from '../pages/footer'; // Assuming you have a Footer component
 
 // Mock components since we don't have the actual ones
-const Navbar = () => (
-  <nav className="flex justify-between items-center p-4 bg-black">
-    <div className="text-white font-bold text-xl">techipedia<span className="text-purple-500">Blogs</span></div>
-    <div className="flex items-center space-x-4">
-      <input type="text" placeholder="Search..." className="bg-gray-800 text-white px-4 py-2 rounded-lg" />
-      <button className="text-white">🔍</button>
-    </div>
-  </nav>
-);
+const Navbar = () => {
+    const [isMobile, setIsMobile] = React.useState(false);
+    const [isScrolled, setIsScrolled] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(false);
 
-const Footer = () => (
-  <footer className="bg-black text-white p-8">
-    <div className="max-w-6xl mx-auto flex justify-between items-center">
-      <div className="text-xl font-bold">techipedia</div>
-      <div className="flex space-x-6">
-        <a href="#" className="hover:text-purple-400">Home</a>
-        <a href="#" className="hover:text-purple-400">About Us</a>
-        <a href="#" className="hover:text-purple-400">Blog</a>
-        <a href="#" className="hover:text-purple-400">Events</a>
-        <a href="#" className="hover:text-purple-400">Contact Us</a>
-      </div>
-      <div className="flex space-x-4">
-        <span>📷</span>
-        <span>📺</span>
-        <span>💼</span>
-        <span>🐦</span>
-        <span>💬</span>
-      </div>
+    React.useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        const handleScroll = () => setIsScrolled(window.scrollY > 0);
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    return (
+
+   <nav
+            style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: isMobile ? "center" : "space-between",
+                padding: isMobile ? "0.5rem 1rem" : "1.00rem 2rem",
+                background: isScrolled ? "rgba(255, 255, 255, 0.1)" : "transparent",
+                backdropFilter: isScrolled ? "blur(10px)" : "none",
+                color: "#fff",
+                position: "fixed",
+                width: "100%",
+                top: 0,
+                zIndex: 1000,
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                transition: "all 0.3s ease",
+            }}
+        >
+            <div style={{ 
+                fontWeight: "bold", 
+                fontSize: "1.25rem", 
+                letterSpacing: "-1px",
+                position: 'relative',
+                flex: 1,
+                zIndex: 1001,
+                pointerEvents: 'auto',
+                background: 'transparent',
+            }}>
+                techiepedia
+            </div>
+            
+            {isMobile && (
+               <div className="flex items-center space-x-4">
+                 <input type="text" placeholder="Search..." className="bg-gray-800 text-white px-4 py-2 rounded-lg" />
+                 <button onClick={() => setIsOpen(!isOpen)}
+                    style={{
+                        background: 'transparent',
+                        border: 'none',
+                        fontSize: '1.8rem',
+                        cursor: 'pointer',
+                        zIndex: 1001,
+                        padding: '0.5rem',
+                        position: 'absolute',
+                        right: '1rem',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                    }}
+                >
+                    {isOpen ? '×' : '🔍'}
+                </button>
     </div>
-    <div className="text-center mt-4 text-gray-500">©2025 techipedia. All rights reserved</div>
-  </footer>
-);
+            )}
+        </nav>
+    );
+};
 
 export default function BlogSection() {
   return (
@@ -162,9 +206,10 @@ export default function BlogSection() {
             </button>
           </div>
         </div>
+
       </section>
-      
-      <Footer />
+            <Footer />
     </main>
   );
 }
+
