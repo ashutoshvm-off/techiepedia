@@ -68,6 +68,9 @@ export function Blog() {
                         overflow: "hidden",
                         boxShadow: "0 8px 32px rgba(114, 36, 223, 0.2)",
                         width: "300px",
+                        display: "flex",
+                        flexDirection: "column",
+                        height: "400px", // Fixed height for consistency
                     }}
                 >
                     <img
@@ -79,19 +82,25 @@ export function Blog() {
                             objectFit: "cover",
                         }}
                     />
-                    <div style={{ padding: "1.5rem" }}>
-                        <h3 style={{ fontSize: "1.4rem", fontWeight: "bold", color: "#fff" }}>
-                            {blog.title}
-                        </h3>
-                        <p style={{ fontSize: "1rem", color: "#a084e8", marginTop: "0.5rem" }}>
-                            {blog.subtitle}
-                        </p>
-                        <p style={{ fontSize: "0.9rem", color: "#7ee6ff", marginTop: "0.5rem" }}>
-                            {blog.date}
-                        </p>
+                    <div style={{ 
+                        padding: "1.5rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        height: "100%",
+                    }}>
+                        <div style={{ flex: 1 }}>
+                            <h3 style={{ fontSize: "1.4rem", fontWeight: "bold", color: "#fff" }}>
+                                {blog.title}
+                            </h3>
+                            <p style={{ fontSize: "1rem", color: "#a084e8", marginTop: "0.5rem" }}>
+                                {blog.subtitle}
+                            </p>
+                            <p style={{ fontSize: "0.9rem", color: "#7ee6ff", marginTop: "0.5rem" }}>
+                                {blog.date}
+                            </p>
+                        </div>
                         <button
                             style={{
-                                marginTop: "1.5rem",
                                 padding: "0.6rem 1.5rem",
                                 background: "rgba(30,0,60,0.3)",
                                 border: "1.5px solid #a084e8",
@@ -100,6 +109,7 @@ export function Blog() {
                                 cursor: "pointer",
                                 fontSize: "1rem",
                                 fontWeight: 500,
+                                marginTop: "auto", // This pushes the button to the bottom
                             }}
                         >
                             Read More
