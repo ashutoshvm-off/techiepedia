@@ -1,5 +1,9 @@
 'use client';
-export default function HERO() {
+interface HeroProps {
+  onExploreClick: () => void;
+}
+
+export default function HERO({ onExploreClick }: HeroProps) {
   return (
     <>
 
@@ -106,6 +110,7 @@ export default function HERO() {
             For The Techies
           </div>
           <button
+            onClick={onExploreClick}
             style={{
               marginTop: "2.2rem",
               padding: "0.6rem 2.2rem",

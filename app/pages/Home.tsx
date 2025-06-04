@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Dimensions, ResponsiveSpacing } from "../types/styles";
 
 import Hero from "./hero";
@@ -18,6 +18,7 @@ import { galleryimages } from "@/data/gallery";
 export default function Page() {
   const [isMobile, setIsMobile] = useState(false);
   const [dimensions, setDimensions] = useState<Dimensions>({ width: 0, height: 0 });
+  const aboutSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateLayout = () => {
@@ -48,6 +49,10 @@ export default function Page() {
 
   const spacing = getResponsiveSpacing();
 
+  const scrollToAbout = () => {
+    aboutSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <main
       style={{
@@ -69,9 +74,11 @@ export default function Page() {
           maxWidth: "100%",
         }}
       >
-        <Hero />
+        <Hero onExploreClick={scrollToAbout} />
       </div>
-      <About />
+      <div ref={aboutSectionRef}>
+        <About />
+      </div>
       <Events />
       {/* <GlowingGridSection cards={galleryimages} /> */}
       <GlowingGridSection />
