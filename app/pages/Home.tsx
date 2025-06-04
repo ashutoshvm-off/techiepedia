@@ -10,8 +10,10 @@ import { Events } from "./events";
 import { Blog } from "./blog";
 import { Join } from "./join";
 import { Contact } from "./contact";
+// import {GlowingGridSection}  from "./gallery";
 import GlowingGridSection from "./gallery";
 import Footer from "./footer";
+import { galleryimages } from "@/data/gallery";
 
 export default function Page() {
   const [isMobile, setIsMobile] = useState(false);
@@ -71,6 +73,7 @@ export default function Page() {
       </div>
       <About />
       <Events />
+      {/* <GlowingGridSection cards={galleryimages} /> */}
       <GlowingGridSection />
       <Blog />
       <Join />
