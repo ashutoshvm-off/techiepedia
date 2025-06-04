@@ -1,4 +1,13 @@
+"use client";
+import { useRouter } from 'next/navigation';
+
 export function Blog() {
+    const router = useRouter();
+
+    const handleShowMore = () => {
+        router.push('/blogs');
+    };
+
     return (
         <section
             id="blog"
@@ -98,6 +107,33 @@ export function Blog() {
                     </div>
                 </div>
             ))}
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <button
+                onClick={handleShowMore}
+                style={{
+                    padding: '1rem 2rem',
+                    background: 'rgba(30,0,60,0.3)',
+                    border: '2px solid #a084e8',
+                    borderRadius: '2rem',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                    transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(160,132,232,0.2)';
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(30,0,60,0.3)';
+                    e.currentTarget.style.transform = 'scale(1)';
+                }}
+            >
+                Show More Blogs
+            </button>
         </div>
     </section>
 
