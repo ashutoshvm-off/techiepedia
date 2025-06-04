@@ -5,7 +5,38 @@ export function Blog() {
     const router = useRouter();
 
     const handleShowMore = () => {
-        router.push('/blog-section');
+        router.push('/blogs');
+    };
+
+    const blogs = [
+        {
+            id: 'osi-models',
+            title: "OSI Models Explained",
+            subtitle: "Tech Huh? EP 1",
+            date: "April 2025",
+            imageUrl: "/blog1.png",
+            slug: "osi-models-explained"
+        },
+        {
+            id: 'tcp-ip',
+            title: "TCP/IP Jargon Explained",
+            subtitle: "Tech Huh? EP 2",
+            date: "April 2025",
+            imageUrl: "/blog2.png",
+            slug: "tcp-ip-jargon-explained"
+        },
+        {
+            id: 'dns',
+            title: "DNS Explained",
+            subtitle: "Tech Huh? EP 3",
+            date: "April 2025",
+            imageUrl: "/blog3.png",
+            slug: "dns-explained"
+        },
+    ];
+
+    const handleReadMore = (blogId: string) => {
+        router.push(`/blog-section/${blogId}`);
     };
 
     return (
@@ -40,26 +71,7 @@ export function Blog() {
                 flexWrap: "wrap",
             }}
         >
-            {[
-                {
-                    title: "OSI Models Explained",
-                    subtitle: "Tech Huh? EP 1",
-                    date: "April 2025",
-                    imageUrl: "/blog1.png",
-                },
-                {
-                    title: "TCP/IP Jargon Explained",
-                    subtitle: "Tech Huh? EP 2",
-                    date: "April 2025",
-                    imageUrl: "/blog2.png",
-                },
-                {
-                    title: "DNS Explained",
-                    subtitle: "Tech Huh? EP 3",
-                    date: "April 2025",
-                    imageUrl: "/blog3.png",
-                },
-            ].map((blog, index) => (
+            {blogs.map((blog, index) => (
                 <div
                     key={index}
                     style={{
@@ -100,6 +112,7 @@ export function Blog() {
                             </p>
                         </div>
                         <button
+                            onClick={() => handleReadMore(blog.id)}
                             style={{
                                 padding: "0.6rem 1.5rem",
                                 background: "rgba(30,0,60,0.3)",
@@ -110,6 +123,15 @@ export function Blog() {
                                 fontSize: "1rem",
                                 fontWeight: 500,
                                 marginTop: "auto", // This pushes the button to the bottom
+                                transition: "all 0.3s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = "rgba(160,132,232,0.2)";
+                                e.currentTarget.style.transform = "scale(1.05)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = "rgba(30,0,60,0.3)";
+                                e.currentTarget.style.transform = "scale(1)";
                             }}
                         >
                             Read More
