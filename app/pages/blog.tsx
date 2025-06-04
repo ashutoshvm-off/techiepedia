@@ -5,7 +5,7 @@ export function Blog() {
     const router = useRouter();
 
     const handleShowMore = () => {
-        router.push('/blogs');
+        router.push('/blog-section');
     };
 
     return (
