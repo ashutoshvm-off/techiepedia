@@ -4,6 +4,17 @@ import { useState, useEffect } from 'react';
 import { mobileDropdownStyle } from './mobile';
 import { useRouter } from 'next/navigation';
 
+const linkStyles = {
+    cursor: 'pointer',
+    color: "#F9F8FC",
+    fontFamily: "Poppins",
+    fontSize: "16px",
+    fontWeight: 500,
+    lineHeight: "24px",
+    letterSpacing: "0.2px",
+    textDecoration: "none",
+};
+
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -34,6 +45,32 @@ export function Navbar() {
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
             setIsOpen(false); // Close mobile menu if open
+        }
+    };
+
+    const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, item: string) => {
+        e.preventDefault();
+        setIsOpen(false);
+
+        switch(item) {
+            case 'Home':
+                router.push('/');
+                break;
+            case 'About Us':
+                scrollToSection(e, 'about');
+                break;
+            case 'Events':
+                scrollToSection(e, 'events');
+                break;
+            case 'Projects':
+                scrollToSection(e, 'gallery');
+                break;
+            case 'Blogs':
+                scrollToSection(e, 'blog');
+                break;
+            case 'Contact Us':
+                scrollToSection(e, 'contact');
+                break;
         }
     };
 
@@ -118,71 +155,28 @@ export function Navbar() {
                     margin: 0,
                 } as React.CSSProperties}
             >
-                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
-                    <a
-                        href="/"
-                        style={{
-                            cursor: 'pointer',
-                            color: "#F9F8FC",
-                            fontFamily: "Poppins",
-                            fontSize: "18px",
-                            fontWeight: 600,
-                            lineHeight: "24px",
-                            letterSpacing: "-0.14px",
-                            textDecoration: "none",
-                            background: "rgba(255,255,255,0.04)",
-                            display: "inline-block",
-                            width: isMobile ? "auto" : "100%",
-                        }}
-                    >
-                        Home
-                    </a>
-                </li>
-                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
-                    <a 
-                        onClick={(e) => scrollToSection(e, 'about')} 
-                        href="#about" 
-                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
-                    >
-                        About Us
-                    </a>
-                </li>
-                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
-                    <a 
-                        onClick={(e) => scrollToSection(e, 'events')} 
-                        href="#events" 
-                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
-                    >
-                        Events
-                    </a>
-                </li>
-                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
-                    <a 
-                        onClick={(e) => scrollToSection(e, 'gallery')} 
-                        href="#gallery" 
-                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
-                    >
-                        Projects
-                    </a>
-                </li>
-                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
-                    <a 
-                        onClick={(e) => scrollToSection(e, 'blog')} 
-                        href="#blog"
-                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
-                    >
-                        Blogs
-                    </a>
-                </li>
-                <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
-                    <a 
-                        onClick={(e) => scrollToSection(e, 'contact')} 
-                        href="#contact" 
-                        style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
-                    >
-                        Contact Us
-                    </a>
-                </li>
+                {['Home', 'About Us', 'Events', 'Projects', 'Blogs', 'Contact Us'].map((item) => (
+                    <li key={item} style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
+                        <a
+                            href={item === 'Home' ? '/' : `#${item.toLowerCase().replace(' ', '-')}`}
+                            onClick={(e) => handleNavigation(e, item)}
+                            style={{
+                                ...linkStyles,
+                                transition: 'all 0.3s ease',
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.color = '#7ee6ff';
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.color = '#F9F8FC';
+                                e.currentTarget.style.transform = 'translateY(0)';
+                            }}
+                        >
+                            {item}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </nav>
     );

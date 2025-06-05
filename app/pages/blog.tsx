@@ -1,6 +1,21 @@
 "use client";
 import { useRouter } from 'next/navigation';
 
+const buttonStyles = {
+    padding: "0.6rem 1.5rem",
+    background: "rgba(30,0,60,0.3)",
+    border: "1.5px solid #a084e8",
+    borderRadius: "2rem",
+    color: "#fff",
+    cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: 500,
+    fontFamily: "Poppins",
+    letterSpacing: "0.2px",
+    lineHeight: "24px",
+    transition: "all 0.3s ease",
+};
+
 export function Blog() {
     const router = useRouter();
 
@@ -114,16 +129,8 @@ export function Blog() {
                         <button
                             onClick={() => handleReadMore(blog.id)}
                             style={{
-                                padding: "0.6rem 1.5rem",
-                                background: "rgba(30,0,60,0.3)",
-                                border: "1.5px solid #a084e8",
-                                borderRadius: "2rem",
-                                color: "#fff",
-                                cursor: "pointer",
-                                fontSize: "1rem",
-                                fontWeight: 500,
-                                marginTop: "auto", // This pushes the button to the bottom
-                                transition: "all 0.3s ease",
+                                ...buttonStyles,
+                                marginTop: "auto",
                             }}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.background = "rgba(160,132,232,0.2)";
@@ -139,35 +146,30 @@ export function Blog() {
                     </div>
                 </div>
             ))}
+            
+            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                <button
+                    onClick={handleShowMore}
+                    style={{
+                        ...buttonStyles,
+                        padding: '1rem 2rem',
+                        fontSize: "16px",
+                        fontWeight: 500,
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(160,132,232,0.2)';
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(30,0,60,0.3)';
+                        e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                >
+                    Show More Blogs
+                </button>
+            </div>
         </div>
-        
-        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <button
-                onClick={handleShowMore}
-                style={{
-                    padding: '1rem 2rem',
-                    background: 'rgba(30,0,60,0.3)',
-                    border: '2px solid #a084e8',
-                    borderRadius: '2rem',
-                    color: '#fff',
-                    cursor: 'pointer',
-                    fontSize: '1.1rem',
-                    fontWeight: 600,
-                    transition: 'all 0.3s ease',
-                }}
-                onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(160,132,232,0.2)';
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                }}
-                onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(30,0,60,0.3)';
-                    e.currentTarget.style.transform = 'scale(1)';
-                }}
-            >
-                Show More Blogs
-            </button>
-        </div>
-    </section>
+        </section>
 
     );
 }
