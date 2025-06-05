@@ -8,6 +8,10 @@ export function Blog() {
         router.push('/blogs');
     };
 
+    const handleReadMore = (blogId: string) => {
+        router.push(`/blogs/${blogId}`);
+    };
+
     const blogs = [
         {
             id: 'osi-models',
@@ -34,10 +38,6 @@ export function Blog() {
             slug: "dns-explained"
         },
     ];
-
-    const handleReadMore = (blogId: string) => {
-        router.push(`/blog-section/${blogId}`);
-    };
 
     return (
         <section

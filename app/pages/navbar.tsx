@@ -167,10 +167,10 @@ export function Navbar() {
                 </li>
                 <li style={{ width: isMobile ? "100%" : "auto", textAlign: isMobile ? "center" : "left" }}>
                     <a 
-              onClick={() => router.push('/blog-section')}
+                        onClick={(e) => scrollToSection(e, 'blog')} 
+                        href="#blog"
                         style={{ cursor: 'pointer', color: "#F9F8FC", textDecoration: "none" }}
                     >
-
                         Blogs
                     </a>
                 </li>

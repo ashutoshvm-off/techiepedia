@@ -29,7 +29,7 @@ const blogPosts = [
 export default function BlogsPage() {
     const router = useRouter();
     const handleReadMore = (blogId: string) => {
-        router.push(`/blogs/${blogId}`); // Changed from /blog-section to /blogs
+        router.push(`/blogs/${blogId}`);
     };
 
     return (
