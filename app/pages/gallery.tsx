@@ -1,139 +1,126 @@
-export default function PurpleGridSection() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-black p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-12 grid-rows-6 gap-6 h-screen">
-          <div className="col-span-3 row-span-2 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 rounded-2xl shadow-2xl border border-purple-500/30 hover:scale-105 transition-transform duration-300"></div>
-          
-          <div className="col-span-5 row-span-4 col-start-4 row-start-2 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900 rounded-2xl shadow-2xl border border-purple-500/30 hover:scale-105 transition-transform duration-300"></div>
-          
-          <div className="col-span-4 row-span-3 col-start-9 bg-gradient-to-br from-purple-500 via-purple-600 to-purple-800 rounded-2xl shadow-2xl border border-purple-500/30 hover:scale-105 transition-transform duration-300"></div>
-          
-          <div className="col-span-3 row-span-3 row-start-3 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900 rounded-2xl shadow-2xl border border-purple-500/30 hover:scale-105 transition-transform duration-300"></div>
-          
-          <div className="col-span-4 row-span-2 col-start-9 row-start-4 bg-gradient-to-br from-purple-500 via-purple-700 to-purple-800 rounded-2xl shadow-2xl border border-purple-500/30 hover:scale-105 transition-transform duration-300"></div>
-          
-          <div className="col-span-8 row-span-1 col-start-1 row-start-6 bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900 rounded-2xl shadow-2xl border border-purple-500/30 hover:scale-105 transition-transform duration-300"></div>
-          
-          <div className="col-span-4 row-span-1 col-start-9 row-start-6 bg-gradient-to-br from-purple-500 via-purple-600 to-purple-800 rounded-2xl shadow-2xl border border-purple-500/30 hover:scale-105 transition-transform duration-300"></div>
-        </div>
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
+const drones = [
+  {
+    name: "RR-Raptor 18 12S BNF",
+    category: "Cinematic",
+    image: "/blog3.png", // Fixed relative path
+  },
+  {
+    name: "GEPRC MARK5 DJI O3 HD",
+    category: "Freestyle",
+    image: "/blog1.png", // Fixed relative path
+  },
+  {
+    name: "AOS Cine35 EVO",
+    category: "CineWhoop",
+    image: "/blog2.png", // Fixed relative path
+  },
+  {
+    name: "Flywoo Venom H20 Mini",
+    category: "Toothpick",
+    image: "/blog1.png", // Fixed relative path
+  },
+  {
+    name: "RR-Rhino 5 x8 V4 BNF",
+    category: "Long Range",
+    image: "/blog3.png", // Fixed relative path
+  },
+  {
+    name: "RR-Raptor 18 12S BNF",
+    category: "Cinematic",
+    image: "/blog2.png", // Fixed relative path
+  },
+  {
+    name: "GEPRC MARK5 DJI O3 HD",
+    category: "Freestyle",
+    image: "/blog3.png", // Fixed relative path
+  },
+];
+
+export default function AppleCardsCarouselDroneSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showArrows] = useState(true);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo =
+        direction === "left"
+          ? scrollLeft - clientWidth
+          : scrollLeft + clientWidth;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <>
+    <style>{`
+      ::-webkit-scrollbar {
+    display: none;
+`}
+    </style>
+    <section
+      id="drones-section"
+      className="bg-[#0A0118] text-white h-[100vh] flex flex-col justify-center align-center"   
+    >
+      <div className="max-w-[80%] mx-auto px-6">
+        <h2 className="text-7xl md:text-3xl font-bold mb-10 text-center">
+          Projects
+        </h2>
+
+        <div className="relative">
+          {/* Scrollable Cards */}
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4"
+          >
+            {drones.map((drone, index) => (
+              <motion.div
+                key={index}
+                className="relative min-w-[200px] sm:min-w-[320px] h-[300px] sm:h-[600px] bg-black/5 rounded-3xl overflow-hidden shadow-lg snap-start shrink-0 cursor-pointer"
+              >
+                <Image
+                  src={drone.image}
+                  alt={drone.name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
+                  <p className="text-sm text-white/70 font-semibold mb-1">
+                    {drone.category}
+                  </p>
+                  <h3 className="text-xl font-bold text-white leading-tight">
+                    {drone.name}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Navigation Arrows - Hidden on small screens */}
+          {showArrows && (
+            <div className="mt-6 flex justify-center space-x-4">
+              <button
+                onClick={() => scroll("left")}
+                className="bg-black/20 hover:bg-black/40 p-3 rounded-full transition"
+              >
+                <ChevronLeft className="text-white w-6 h-6" />
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                className="bg-black/20 hover:bg-black/40 p-3 rounded-full transition"
+              >
+                <ChevronRight className="text-white w-6 h-6" />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </section>
+    </>
   );
 }
-
-// "use client";
-// import React, { JSX, useState } from "react";
-// import { motion } from "motion/react";
-// import { cn } from "@/lib/utils";
-
-// type Card = {
-//   id: number;
-//   content: JSX.Element | string;
-//   className?: string;
-//   thumbnail: string;
-//   alt?: string;
-// };
-
-
-// export const GlowingGridSection = ({ cards }: { cards: Card[] }) => {
-//   const [selected, setSelected] = useState<Card | null>(null);
-//   const [lastSelected, setLastSelected] = useState<Card | null>(null);
-
-//   const handleClick = (card: Card) => {
-//     setLastSelected(selected);
-//     setSelected(card);
-//   };
-
-//   const handleOutsideClick = () => {
-//     setLastSelected(selected);
-//     setSelected(null);
-//   };
-
-//   return (
-//     <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3  max-w-7xl mx-auto gap-4 relative">
-//       {cards.map((card, i) => (
-//         <div key={i} className={cn(card.className, "")}>
-//           <motion.div
-//             onClick={() => handleClick(card)}
-//             className={cn(
-//               card.className,
-//               "relative overflow-hidden",
-//               selected?.id === card.id
-//                 ? "rounded-lg cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
-//                 : lastSelected?.id === card.id
-//                 ? "z-40 bg-white rounded-xl h-full w-full"
-//                 : "bg-white rounded-xl h-full w-full"
-//             )}
-//             layoutId={`card-${card.id}`}
-//           >
-//             {selected?.id === card.id && <SelectedCard selected={selected} />}
-//             <ImageComponent card={card} />
-//           </motion.div>
-//         </div>
-//       ))}
-//       <motion.div
-//         onClick={handleOutsideClick}
-//         className={cn(
-//           "absolute h-full w-full left-0 top-0 bg-black opacity-0 z-10",
-//           selected?.id ? "pointer-events-auto" : "pointer-events-none"
-//         )}
-//         animate={{ opacity: selected?.id ? 0.3 : 0 }}
-//       />
-//     </div>
-//   );
-// };
-
-// const ImageComponent = ({ card }: { card: Card }) => {
-//   return (
-//     <motion.img
-//       layoutId={`image-${card.id}-image`}
-//       src={card.thumbnail}
-//       height="500"
-//       width="500"
-//       className={cn(
-//         "object-cover object-top absolute inset-0 h-full w-full transition duration-200 z-20"
-//       )}
-//       alt="thumbnail"
-//     />
-//   );
-// };
-
-// const SelectedCard = ({ selected }: { selected: Card | null }) => {
-//   return (
-//     <div className="bg-transparent h-full w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60]">
-//       <motion.div
-//         initial={{
-//           opacity: 0,
-//         }}
-//         animate={{
-//           opacity: 0.6,
-//         }}
-//         className="absolute inset-0 h-full w-full bg-black opacity-60 z-10"
-//       />
-//       <motion.div
-//         layoutId={`content-${selected?.id}`}
-//         initial={{
-//           opacity: 0,
-//           y: 100,
-//         }}
-//         animate={{
-//           opacity: 1,
-//           y: 0,
-//         }}
-//         exit={{
-//           opacity: 0,
-//           y: 100,
-//         }}
-//         transition={{
-//           duration: 0.3,
-//           ease: "easeInOut",
-//         }}
-//         className="relative px-8 pb-4 z-[70]"
-//       >
-//         {selected?.content}
-//       </motion.div>
-//     </div>
-//   );
-// };
