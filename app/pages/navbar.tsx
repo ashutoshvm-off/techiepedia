@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { mobileDropdownStyle } from './mobile';
 import { useRouter } from 'next/navigation';
 
 const linkStyles = {
@@ -16,6 +15,7 @@ const linkStyles = {
 };
 
 export function Navbar() {
+    const [mounted, setMounted] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -23,12 +23,9 @@ export function Navbar() {
 
 
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 0);
-        };
+        setMounted(true);
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        const handleScroll = () => setIsScrolled(window.scrollY > 0);
         
         checkMobile();
         window.addEventListener('resize', checkMobile);
@@ -73,6 +70,10 @@ export function Navbar() {
                 break;
         }
     };
+
+    if (!mounted) {
+        return null; // or a simple loading state
+    }
 
     return (
         <nav

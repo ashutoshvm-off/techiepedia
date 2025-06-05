@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const buttonStyles = {
     padding: "0.6rem 1.5rem",
@@ -18,6 +19,11 @@ const buttonStyles = {
 
 export function Blog() {
     const router = useRouter();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const handleShowMore = () => {
         router.push('/blogs');
@@ -54,12 +60,16 @@ export function Blog() {
         },
     ];
 
+    if (!mounted) {
+        return null; // or a loading state
+    }
+
     return (
         <section
             id="blog"
             style={{
                 background: "linear-gradient(to bottom, #e0bdfb, #9b3ede 30%, #000000 70%)",
-                padding: "80px 0",
+                padding: "60px 0", // Reduced padding
                 position: "relative",
                 zIndex: 1,
             }}
@@ -71,103 +81,109 @@ export function Blog() {
                 color: "#7ee6ff",
                 fontWeight: 700,
                 fontSize: "2.5rem",
-                marginBottom: "2.5rem",
+                marginBottom: "2rem", // Reduced margin
                 letterSpacing: "1px",
             }}
         >
             EXPLORE OUR BLOGS
         </h2>
-        <div
-            style={{
+        <div style={{
                 display: "flex",
-                justifyContent: "center",
-                gap: "2rem",
-                padding: "0 2rem",
-                flexWrap: "wrap",
-            }}
-        >
-            {blogs.map((blog, index) => (
-                <div
-                    key={index}
-                    style={{
-                        background: "rgba(114, 36, 223, 0.2)",
-                        borderRadius: "12px",
-                        overflow: "hidden",
-                        boxShadow: "0 8px 32px rgba(114, 36, 223, 0.2)",
-                        width: "300px",
-                        display: "flex",
-                        flexDirection: "column",
-                        height: "400px", // Fixed height for consistency
-                    }}
-                >
-                    <img
-                        src={blog.imageUrl}
-                        alt={blog.title}
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "1.5rem", // Reduced gap
+            }}>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "2rem",
+                    padding: "0 2rem",
+                    flexWrap: "wrap",
+                }}
+            >
+                {blogs.map((blog, index) => (
+                    <div
+                        key={index}
                         style={{
-                            width: "100%",
-                            height: "160px",
-                            objectFit: "cover",
+                            background: "rgba(114, 36, 223, 0.2)",
+                            borderRadius: "12px",
+                            overflow: "hidden",
+                            boxShadow: "0 8px 32px rgba(114, 36, 223, 0.2)",
+                            width: "300px",
+                            display: "flex",
+                            flexDirection: "column",
+                            height: "400px", // Fixed height for consistency
                         }}
-                    />
-                    <div style={{ 
-                        padding: "1.5rem",
-                        display: "flex",
-                        flexDirection: "column",
-                        height: "100%",
-                    }}>
-                        <div style={{ flex: 1 }}>
-                            <h3 style={{ fontSize: "1.4rem", fontWeight: "bold", color: "#fff" }}>
-                                {blog.title}
-                            </h3>
-                            <p style={{ fontSize: "1rem", color: "#a084e8", marginTop: "0.5rem" }}>
-                                {blog.subtitle}
-                            </p>
-                            <p style={{ fontSize: "0.9rem", color: "#7ee6ff", marginTop: "0.5rem" }}>
-                                {blog.date}
-                            </p>
-                        </div>
-                        <button
-                            onClick={() => handleReadMore(blog.id)}
+                    >
+                        <img
+                            src={blog.imageUrl}
+                            alt={blog.title}
                             style={{
-                                ...buttonStyles,
-                                marginTop: "auto",
+                                width: "100%",
+                                height: "160px",
+                                objectFit: "cover",
                             }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.background = "rgba(160,132,232,0.2)";
-                                e.currentTarget.style.transform = "scale(1.05)";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.background = "rgba(30,0,60,0.3)";
-                                e.currentTarget.style.transform = "scale(1)";
-                            }}
-                        >
-                            Read More
-                        </button>
+                        />
+                        <div style={{ 
+                            padding: "1.5rem",
+                            display: "flex",
+                            flexDirection: "column",
+                            height: "100%",
+                        }}>
+                            <div style={{ flex: 1 }}>
+                                <h3 style={{ fontSize: "1.4rem", fontWeight: "bold", color: "#fff" }}>
+                                    {blog.title}
+                                </h3>
+                                <p style={{ fontSize: "1rem", color: "#a084e8", marginTop: "0.5rem" }}>
+                                    {blog.subtitle}
+                                </p>
+                                <p style={{ fontSize: "0.9rem", color: "#7ee6ff", marginTop: "0.5rem" }}>
+                                    {blog.date}
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => handleReadMore(blog.id)}
+                                style={{
+                                    ...buttonStyles,
+                                    marginTop: "auto",
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = "rgba(160,132,232,0.2)";
+                                    e.currentTarget.style.transform = "scale(1.05)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = "rgba(30,0,60,0.3)";
+                                    e.currentTarget.style.transform = "scale(1)";
+                                }}
+                            >
+                                Read More
+                            </button>
+                        </div>
                     </div>
-                </div>
-            ))}
-            
-            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-                <button
-                    onClick={handleShowMore}
-                    style={{
-                        ...buttonStyles,
-                        padding: '1rem 2rem',
-                        fontSize: "16px",
-                        fontWeight: 500,
-                    }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(160,132,232,0.2)';
-                        e.currentTarget.style.transform = 'scale(1.05)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(30,0,60,0.3)';
-                        e.currentTarget.style.transform = 'scale(1)';
-                    }}
-                >
-                    Show More Blogs
-                </button>
+                ))}
             </div>
+            
+            <button
+                onClick={handleShowMore}
+                style={{
+                    ...buttonStyles,
+                    padding: '0.8rem 2rem', // Reduced padding
+                    fontSize: "16px",
+                    fontWeight: 500,
+                    marginTop: "0.5rem", // Reduced margin
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(160,132,232,0.2)';
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(30,0,60,0.3)';
+                    e.currentTarget.style.transform = 'scale(1)';
+                }}
+            >
+                Show More Blogs
+            </button>
         </div>
         </section>
 
