@@ -60,33 +60,93 @@ export default function Page() {
         position: "relative",
         margin: 0,
         width: "100%",
+        maxWidth: "100%",
         height: "100%",
         overflow: "hidden",
+        boxSizing: "border-box",
       }}
       className="bg-black text-white font-sans"
     >
       <Navbar />
       <div
         style={{
-          margin: `${spacing.margin.vertical} ${spacing.margin.horizontal}`,
+          margin: 0,
           position: "relative",
           width: "100%",
           maxWidth: "100%",
+          boxSizing: "border-box",
         }}
       >
         <Hero onExploreClick={scrollToAbout} />
       </div>
-      <div ref={aboutSectionRef}>
+      <div 
+        ref={aboutSectionRef}
+        style={{
+          margin: 0,
+          position: "relative",
+          width: "100%",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
         <About />
       </div>
-      <Events />
-      {/* <GlowingGridSection cards={galleryimages} /> */}
-      <GlowingGridSection />
-      <Blog />
-      <Join />
-      <Contact />
+      <div
+        style={{
+          margin: 0,
+          position: "relative",
+          width: "100%",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <Events />
+      </div>
+      <div
+        style={{
+          margin: 0,
+          position: "relative",
+          width: "100%",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <GlowingGridSection />
+      </div>
+      <div
+        style={{
+          margin: 0,
+          position: "relative",
+          width: "100%",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <Blog />
+      </div>
+      <div
+        style={{
+          margin: 0,
+          position: "relative",
+          width: "100%",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <Join />
+      </div>
+      <div
+        style={{
+          margin: 0,
+          position: "relative",
+          width: "100%",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <Contact />
+      </div>
       <Footer />
-
     </main>
   );
 }
