@@ -56,7 +56,7 @@ export default function Page() {
   return (
     <main
       style={{
-        padding: `${spacing.padding.vertical} ${spacing.padding.horizontal}`,
+        padding: 0,
         position: "relative",
         margin: 0,
         width: "100%",
@@ -71,6 +71,7 @@ export default function Page() {
       <div
         style={{
           margin: 0,
+          padding: `${spacing.padding.vertical} ${spacing.padding.horizontal}`,
           position: "relative",
           width: "100%",
           maxWidth: "100%",
@@ -83,6 +84,7 @@ export default function Page() {
         ref={aboutSectionRef}
         style={{
           margin: 0,
+          padding: `${spacing.padding.vertical} ${spacing.padding.horizontal}`,
           position: "relative",
           width: "100%",
           maxWidth: "100%",
